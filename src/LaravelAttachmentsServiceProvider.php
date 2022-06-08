@@ -2,10 +2,15 @@
 
 namespace Dcodegroup\LaravelAttachments;
 
-use Closure;
-use Dcodegroup\LaravelAttachments\Http\Controllers\AttachController;
-use Dcodegroup\LaravelAttachments\Http\Controllers\DeleteController;
-use Dcodegroup\LaravelAttachments\Http\Controllers\UploadController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Annotations\DeleteAnnotationController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Annotations\StoreAnnotationController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Categories\CategoriesController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Categories\OptionsController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\AttachController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\DeleteController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\ExistingController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetCategoryController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\UploadController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,13 +41,34 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
 
     protected function setUpRouting()
     {
-        Route::macro('attachmentRoutes', function (
+        Route::macro('attachments', function (
             string $prefix = 'media',
             string $name = 'media',
         ) {
             Route::post("$prefix/attach", AttachController::class)->name("$name.attach");
             Route::post("$prefix/upload", UploadController::class)->name("$name.upload");
+            Route::get("$prefix/existing", ExistingController::class)->name("$name.existing");
             Route::delete("$prefix/delete/{media}", DeleteController::class)->name("$name.delete");
+        });
+
+        Route::macro('attachmentAnnotations', function (
+            string $prefix = 'media',
+            string $name = 'media',
+        ) {
+            Route::post("$prefix/{media}/annotations", StoreAnnotationController::class)->name("$name.annotations.store");
+            Route::delete("$prefix/{media}/annotations/{annotation}", DeleteAnnotationController::class)->name("$name.annotations.delete");
+        });
+
+        Route::macro('attachmentCategories', function (
+            string $prefix = 'media',
+            string $categoriesPrefix = 'categories',
+            string $name = 'media',
+            string $categoriesName = 'categories',
+        ) {
+            Route::patch("$prefix/category/{media}", SetCategoryController::class)->name("$name.category");
+
+            Route::get("$categoriesPrefix/options", OptionsController::class)->name("$categoriesName.options");
+            Route::get("$categoriesPrefix", CategoriesController::class)->name("$categoriesName");
         });
     }
 

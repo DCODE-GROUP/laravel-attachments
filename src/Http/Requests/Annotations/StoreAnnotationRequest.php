@@ -1,11 +1,10 @@
 <?php
 
-namespace Dcodegroup\LaravelAttachments\Http\Requests;
+namespace Dcodegroup\LaravelAttachments\Http\Requests\Annotations;
 
-use Duijker\LaravelModelExistsRule\ModelExists;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AttachRequest extends FormRequest
+class StoreAnnotationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,19 +19,15 @@ class AttachRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'media' => [
+            'annotations' => [
                 'required',
-                'exists:media,id',
+                'array',
             ],
-            'modelClass' => [
+            'annotations.*.content' => [
                 'required',
                 'string',
             ],
-            'modelId' => [
-                'required',
-                'integer',
-                new ModelExists($this->request->get('modelClass'), 'id'),
-            ],
+            'annotations.*.hidden' => ['required'],
         ];
     }
 }

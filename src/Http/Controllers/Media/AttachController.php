@@ -1,8 +1,8 @@
 <?php
 
-namespace Dcodegroup\LaravelAttachments\Http\Controllers;
+namespace Dcodegroup\LaravelAttachments\Http\Controllers\Media;
 
-use Dcodegroup\LaravelAttachments\Http\Requests\AttachRequest;
+use Dcodegroup\LaravelAttachments\Http\Requests\Media\AttachRequest;
 use Dcodegroup\LaravelAttachments\Models\Media;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;

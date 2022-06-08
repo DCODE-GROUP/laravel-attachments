@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcodegroup\LaravelAttachments\Http\Controllers;
+namespace Dcodegroup\LaravelAttachments\Http\Controllers\Media;
 
 use Dcodegroup\LaravelAttachments\Models\Media;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

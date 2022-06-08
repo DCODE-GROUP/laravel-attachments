@@ -1,6 +1,6 @@
 <?php
 
-namespace Dcodegroup\LaravelAttachments\Http\Requests;
+namespace Dcodegroup\LaravelAttachments\Http\Requests\Media;
 
 use Duijker\LaravelModelExistsRule\ModelExists;
 use Illuminate\Foundation\Http\FormRequest;
