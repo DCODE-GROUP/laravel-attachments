@@ -17,4 +17,9 @@ return [
             ],
         ],
     ],
+
+    'features' => [
+        // annotations
+        // categories
+    ],
 ];
