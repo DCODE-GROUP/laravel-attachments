@@ -3,6 +3,10 @@
 namespace Dcodegroup\LaravelAttachments;
 
 use Closure;
+use Dcodegroup\LaravelAttachments\Http\Controllers\AttachController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\DeleteController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\UploadController;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelAttachmentsServiceProvider extends ServiceProvider
@@ -32,7 +36,14 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
 
     protected function setUpRouting()
     {
-        $this->loadRoutesFrom(__DIR__.'/../routes/attachments.php');
+        Route::macro('attachmentRoutes', function (
+            string $prefix = 'media',
+            string $name = 'media',
+        ) {
+            Route::post("$prefix/attach", AttachController::class)->name("$name.attach");
+            Route::post("$prefix/upload", UploadController::class)->name("$name.upload");
+            Route::delete("$prefix/delete/{media}", DeleteController::class)->name("$name.delete");
+        });
     }
 
     protected function setUpTranslations()
