@@ -9,11 +9,22 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
 {
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/attachments.php', 'attachments',
+        );
     }
 
     public function boot()
     {
+        $this->setUpConfig();
         $this->setUpMigrations();
+    }
+
+    protected function setUpConfig()
+    {
+        $this->publishes([
+            __DIR__.'/../config/attachments.php' => config_path('attachments.php'),
+        ]);
     }
 
     protected function setUpMigrations()
