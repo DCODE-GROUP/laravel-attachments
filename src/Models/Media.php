@@ -101,7 +101,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getAddAnnotationEndpointAttribute()
     {
-        return route('generic.api.media.annotations.store', $this);
+        return route('frontend.admin.media.annotations.store', $this);
     }
 
     public function getPreviewApplicationUrlAttribute()
