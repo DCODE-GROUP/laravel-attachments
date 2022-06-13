@@ -33,6 +33,7 @@ return new class extends Migration {
             $table->nullableTimestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
