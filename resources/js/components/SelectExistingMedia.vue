@@ -21,7 +21,7 @@
             class="close"
             @click="show = false"
           >
-            <i class="fal fa-times" />
+            <x-icon class="w-6 h-6" />
           </div>
           <div class="content">
             <media-list
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { CheckIcon, XIcon } from '@heroicons/vue/solid'
 import MediaList from './MediaList.vue';
 
 export default {

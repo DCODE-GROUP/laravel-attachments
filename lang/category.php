@@ -7,5 +7,4 @@ return [
     'status' => [
         'update_success' => 'Category Successfully Set',
     ],
-
 ];

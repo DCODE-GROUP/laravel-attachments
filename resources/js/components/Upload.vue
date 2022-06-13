@@ -3,6 +3,7 @@
     ref="upload"
     v-model="files"
     name="file"
+    class="w-full border border-dashed border-gray-500 p-4 rounded flex items-center jusify-center !cursor-pointer hover:bg-gray-50"
     :post-action="uploadEndpoint"
     :headers="{
       'X-CSRF-TOKEN': $root.csrf_token,
@@ -17,20 +18,23 @@
     @input-file="inputFile"
     @input-filter="inputFilter"
   >
-    <Icon :name="iconName" :width="iconWidth" :height="iconHeight" />
-    <p>{{ $t('media.phrase.upload_area') }}</p>
-    <button
-      v-show="$refs.upload && $refs.upload.active"
-      type="button"
-      class="button secondary"
-      @click.prevent="$refs.upload.active = false"
-    >
-      {{ $t('media.buttons.cancel') }}
-    </button>
+    <div class="text-center">
+        <plus-icon class="w-12 h-12 mx-auto mb-4" />
+        <p>{{ $t('media.phrase.upload_area') }}</p>
+        <button
+          v-show="$refs.upload && $refs.upload.active"
+          type="button"
+          class="button secondary"
+          @click.prevent="$refs.upload.active = false"
+        >
+          {{ $t('media.buttons.cancel') }}
+        </button>
+    </div>
   </file-upload>
 </template>
 
 <script>
+import { PlusIcon } from '@heroicons/vue/solid'
 import VueUploadComponent from 'vue-upload-component';
 import Icon from './Icon.vue';
 export default {
@@ -39,6 +43,7 @@ export default {
   components: {
     FileUpload: VueUploadComponent,
     Icon,
+    PlusIcon
   },
 
   props: {

@@ -1,7 +1,7 @@
 <template>
-  <aside>
+  <aside class="col-span-3">
     <template v-if="displayStyle === 'list'">
-      <header>
+      <header class="mb-4">
         <h2>{{ headingText ? headingText : $t("media.words.title") }}</h2>
         <template v-if="false && addExistingEndpoint">
           <select-existing-media
@@ -29,73 +29,6 @@
         @media-deleted="destroy"
       />
     </template>
-    <!--
-    <template v-if="displayStyle === 'grid'">
-      <h2>{{ headingText ? headingText : $t("media.words.title") }}</h2>
-      <section>
-        <aside
-          v-if="!showOnly"
-          class="card"
-        >
-          <upload
-            :model="model"
-            :model-class="modelClass"
-            :parent-model="parentModel"
-            :category-id="currentCategory.id"
-            :display-style="displayStyle"
-            :upload-endpoint="uploadEndpoint"
-            :media="media"
-            :options="fullCategoryOptions"
-            :new-file-uploaded="appendToMedia"
-            icon-name="file-upload"
-            :icon-width="50"
-          />
-        </aside>
-        <div
-          v-for="(item, index) in media"
-          :key="index"
-          class="card"
-        >
-          <figure>
-            <a
-              target="_blank"
-              :href="item.url"
-            >
-              <component
-                :is="getComponent(item)"
-                :media="item"
-                :display-style="displayStyle"
-              />
-            </a>
-            <button
-              v-if="!showOnly"
-              type="submit"
-              class="button -hollow sml"
-              @click="destroy(item.id, index)"
-            >
-              <icon
-                name="cross"
-                :width="8"
-              />
-            </button>
-          </figure>
-          <footer>
-            <h5>
-              <a
-                target="_blank"
-                :href="item.url"
-              >{{ item.custom_properties.original_filename }}</a>
-            </h5>
-            <h6>{{ formatBytes(item.size) }}</h6>
-            <inline-category-updater
-              v-if="fullCategoryOptions && !showOnly"
-              :options="fullCategoryOptions"
-              :model="item"
-            />
-          </footer>
-        </div>
-      </section>
-    </template> -->
   </aside>
 </template>
 

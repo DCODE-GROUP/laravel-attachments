@@ -5,10 +5,12 @@
       class="alert success"
     >
       <div>
-        <span><i class="fal fa-check fa-xs" /></span>
+        <check-icon class="w-4 h-4" />
         <small :v-text="alertText" />
       </div>
-      <button><i class="fal fa-times fa-xs" /></button>
+      <button>
+        <x-icon class="w-4 h-4" />
+      </button>
     </header>
     <select
       v-model="form.category_id"
@@ -26,9 +28,14 @@
 </template>
 
 <script>
+import { CheckIcon, XIcon } from '@heroicons/vue/solid'
 
 export default {
   name: "InlineCategoryUpdater",
+  components: {
+      CheckIcon,
+      XIcon
+  },
   props: {
     model: {
       type: Object,
@@ -45,9 +52,9 @@ export default {
   },
   data() {
     return {
-      form: new Form({
+      form: {
         category_id: this.model.category_id,
-      }),
+      },
       showAlert: false,
       alertText: "",
     };
@@ -60,7 +67,7 @@ export default {
 
   methods: {
     update() {
-      this.form
+      axios
         .patch(this.setEndpoint ? this.setEndpoint : `/api/generic/media/category/${this.model.id}`)
         .then((data) => {
           this.alertText = data.message;

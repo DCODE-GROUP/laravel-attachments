@@ -1,35 +1,33 @@
 <template>
   <div
-    class="attachments"
+    class="attachments grid grid-cols-4 gap-4 mb-8 pb-8 border-b border-gray-300"
     :class="displayStyle"
   >
     <menu v-if="categories.length">
-      <button @click="reset">
-        <i class="fal fa-folder-open" />
+      <button class="flex items-center w-full hover:bg-gray-200 px-4 py-2 rounded" @click="reset">
+        <folder-icon class="w-6 mr-2" />
         {{ $t('media.words.home') }}
       </button>
-      <ul>
+      <ul class="pl-4">
         <li :class="{'open' : activeFolder === 'model'}">
           <button
+            class="flex items-center w-full hover:bg-gray-200 px-4 py-2 rounded"
             @click="refineCategory(currentCategory, 'model')"
           >
-            <i
-              class="fal"
-              :class="activeFolder === 'model' ? 'fa-folder-open' : 'fa-folder'"
-            />
+            <folder-open-icon class="w-6 mr-2" v-if="activeFolder === 'model'" />
+            <folder-icon class="w-6 mr-2" v-else />
             {{ $t('media.headings.model') }}
           </button>
-          <ul>
+          <ul class="pl-4">
             <li
               v-for="category in categories"
               :key="category.id"
+              class="mb-1"
               :class="{'open' : currentCategory.id === category.id && activeFolder === 'model'}"
             >
-              <button @click="refineCategory(category, 'model')">
-                <i
-                  class="fal"
-                  :class=" currentCategory.id === category.id && activeFolder === 'model' ? 'fa-folder-open' : 'fa-folder'"
-                />
+              <button class="flex items-center w-full hover:bg-gray-200 px-4 py-2 rounded" @click="refineCategory(category, 'model')">
+                <folder-open-icon class="w-6 mr-2" v-if="currentCategory.id === category.id && activeFolder === 'model'" />
+                <folder-icon class="w-6 mr-2" v-else />
                 {{ category.name }}
               </button>
             </li>
@@ -40,12 +38,11 @@
           :class="{'open' : activeFolder === 'parent'}"
         >
           <button
+            class="flex items-center"
             @click="refineCategory(currentCategory, 'parent')"
           >
-            <i
-              class="fal"
-              :class="activeFolder === 'parent' ? 'fa-folder-open' : 'fa-folder'"
-            />
+            <folder-open-icon class="w-6 mr-2" v-if="activeFolder === 'parent'" />
+            <folder-icon class="w-6 mr-2" v-else />
             {{ $t('media.headings.parent') }}
           </button>
           <ul>
@@ -54,11 +51,9 @@
               :key="category.id"
               :class="{'open' : currentCategory.id === category.id && activeFolder === 'parent' }"
             >
-              <button @click="refineCategory(category, 'parent')">
-                <i
-                  class="fal"
-                  :class=" currentCategory.id === category.id && activeFolder === 'parent' ? 'fa-folder-open' : 'fa-folder'"
-                />
+              <button class="flex items-center" @click="refineCategory(category, 'parent')">
+                <folder-open-icon class="w-6 mr-2" v-if="currentCategory.id === category.id && activeFolder === 'parent'" />
+                <folder-icon class="w-6 mr-2" v-else />
                 {{ category.name }}
               </button>
             </li>
@@ -104,6 +99,7 @@
 </template>
 
 <script>
+import { FolderIcon, FolderOpenIcon } from '@heroicons/vue/solid'
 import ModelMedia from "./ModelMedia.vue";
 import bytes from "bytes";
 
@@ -114,17 +110,10 @@ export default {
   name: "Attachments",
   components: {
     ModelMedia,
+    FolderIcon,
+    FolderOpenIcon
   },
   filters: {
-    formatDate(value) {
-      return value == null ? "" : new Date(value).toLocaleDateString();
-    },
-    formatFileSize(value) {
-      return value == null ? "" : bytes(value);
-    },
-    capitalize(value) {
-      return value == null ? "" : _.upperFirst(value);
-    },
   },
   props: {
     model: {
@@ -221,6 +210,15 @@ export default {
       .catch(console.error);
   },
   methods: {
+    formatDate(value) {
+      return value == null ? "" : new Date(value).toLocaleDateString();
+    },
+    formatFileSize(value) {
+      return value == null ? "" : bytes(value);
+    },
+    capitalize(value) {
+      return value == null ? "" : _.upperFirst(value);
+    },
     reset() {
       this.parentCategories = [];
       this.currentCategory = {

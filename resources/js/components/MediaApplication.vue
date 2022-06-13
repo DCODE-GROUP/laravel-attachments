@@ -5,7 +5,7 @@
     target="_blank"
     :title="!error ? generateName : 'undefined-filename'"
   >
-    <i v-if="error" class="fal fa-file-pdf" />
+    <refresh-icon v-if="error" class="w-6 h-6 animate-spin" />
     <img
       v-else
       :src="media[displayStyle + '_url']"
@@ -15,16 +15,21 @@
     />
   </a>
   <a v-else :href="media.url" target="_blank">
-    <i class="fal fa-file-alt fa-3x" />
+    <template-icon class="w-6 h-6" />
   </a>
 </template>
 
 <script>
+import { TemplateIcon, RefreshIcon } from '@heroicons/vue/solid'
 import MediaElement from '../mixins/MediaElement';
 
 export default {
   name: 'Application',
   extends: MediaElement,
+  components: {
+      TemplateIcon,
+      RefreshIcon
+  },
   computed: {
     generateName() {
       return this.media.name + ' (' + this.media.size + ')';

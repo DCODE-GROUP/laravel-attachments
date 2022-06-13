@@ -1,17 +1,6 @@
 import bytes from "bytes";
 
 export default {
-  filters: {
-    formatDate(value) {
-      return value == null ? "" : new Date(value).toLocaleDateString();
-    },
-    formatFileSize(value) {
-      return value == null ? "" : bytes(value);
-    },
-    capitalize(value) {
-      return value == null ? "" : _.upperFirst(value);
-    },
-  },
   props: {
     media: {
       type: Object,
@@ -31,6 +20,15 @@ export default {
   },
 
   methods: {
+    formatDate(value) {
+      return value == null ? "" : new Date(value).toLocaleDateString();
+    },
+    formatFileSize(value) {
+      return value == null ? "" : bytes(value);
+    },
+    capitalize(value) {
+      return value == null ? "" : _.upperFirst(value);
+    },
     replaceByDefault(e) {
       this.error = true;
 

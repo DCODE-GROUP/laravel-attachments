@@ -42,10 +42,10 @@
             />
           </td>
           <td v-if="!compact">
-            {{ item.size | formatFileSize }}
+            {{ formatFileSize(item.size) }}
           </td>
           <td v-if="!compact">
-            {{ item.created_at | formatDate }}
+            {{ formatDate(item.created_at) }}
           </td>
           <td class="actions">
             <menu>
@@ -54,7 +54,7 @@
                 class="button -hollow sml"
                 @click="fireEditEvent(item)"
               >
-                <i class="fal fa-pencil" />
+                <pencil-icon class="w-6 h-6" />
               </button>
               <button
                 v-if="allowDeleting"
@@ -62,11 +62,7 @@
                 type="submit"
                 @click="fireDeletedEvent(item, index)"
               >
-                <Icon
-                  name="cross"
-                  :width="10"
-                  :height="10"
-                />
+                <trash-icon class="w-6 h-6" />
               </button>
             </menu>
           </td>
@@ -75,7 +71,6 @@
       <tr>
         <td
           colspan="6"
-          class="px-0"
         >
           <upload
             v-if="allowUploading"
@@ -96,20 +91,20 @@
         <td
           colspan="6"
         >
-          <p class="text-warning">
+          <p class="text-warning mb-2 text-center">
             No media uploaded...
           </p>
-          <upload
-            v-if="allowUploading"
-            :model="model"
-            :model-class="modelClass"
-            :category-id="categoryId"
-            :upload-endpoint="uploadEndpoint"
-            display-style="list"
-            :media="media"
-            :new-file-uploaded="fireUploadedEvent"
-            class="horizontal-uploader"
-          />
+            <upload
+                v-if="allowUploading"
+                :model="model"
+                :model-class="modelClass"
+                :category-id="categoryId"
+                :upload-endpoint="uploadEndpoint"
+                display-style="list"
+                :media="media"
+                :new-file-uploaded="fireUploadedEvent"
+                class="horizontal-uploader"
+            />
         </td>
       </tr>
     </tbody>
@@ -117,6 +112,7 @@
 </template>
 
 <script>
+import { PencilIcon, TrashIcon } from '@heroicons/vue/solid'
 import bytes from 'bytes';
 import Upload from './Upload.vue';
 import MediaImage from './MediaImage.vue';
@@ -135,18 +131,8 @@ export default {
     Upload,
     InlineCategoryUpdater,
     Icon,
-  },
-
-  filters: {
-    formatDate(value) {
-      return value == null ? "" : new Date(value).toLocaleDateString();
-    },
-    formatFileSize(value) {
-      return value == null ? "" : bytes(value);
-    },
-    capitalize(value) {
-      return value == null ? "" : _.upperFirst(value);
-    },
+    PencilIcon,
+    TrashIcon
   },
   props: {
     media: {
@@ -209,6 +195,15 @@ export default {
     return {};
   },
   methods: {
+    formatDate(value) {
+      return value == null ? "" : new Date(value).toLocaleDateString();
+    },
+    formatFileSize(value) {
+      return value == null ? "" : bytes(value);
+    },
+    capitalize(value) {
+      return value == null ? "" : _.upperFirst(value);
+    },
     getComponent(file) {
       if (!file) {
         return "default"

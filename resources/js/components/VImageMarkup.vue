@@ -41,7 +41,7 @@
               class="delete"
               @click="deleteLayer(annotation.id)"
             >
-              <i class="fal fa-trash-alt" />
+              <trash-icon class="w-6 h-6" />
             </button>
             <button
               class="remove"
@@ -102,31 +102,31 @@
             :class="{ 'active' : toolSelected === 'draw' }"
             @click="drawMode"
           >
-            <i class="fal fa-pencil" />
+            <pencil-icon class="w-6 h-6" />
           </button>
           <button
             :class="{ 'active' : toolSelected === 'text' }"
             @click="textMode"
           >
-            <i class="fal fa-text-size" />
+            <adjustments-icon class="w-6 h-6" />
           </button>
           <button
             :class="{ 'active' : toolSelected === 'move' }"
             @click="moveMode"
           >
-            <i class="fal fa-expand-arrows-alt" />
+            <arrows-expand-icon class="w-6 h-6" />
           </button>
           <button
             :disabled="stroke === 8"
             @click="increaseStroke"
           >
-            <i class="fal fa-plus" />
+            <plus-icon class="w-6 h-6" />
           </button>
           <button
             :disabled="stroke === 1"
             @click="decreaseStroke"
           >
-            <i class="fal fa-minus" />
+            <minus-icon class="w-6 h-6" />
           </button>
           <div class="colour-picker">
             <input
@@ -157,7 +157,7 @@
             ref="clear"
             @click="clearMode"
           >
-            <i class="fal fa-undo" />
+            <rewind-icon class="w-6 h-6" />
           </button>
         </nav>
       </div>
@@ -165,17 +165,20 @@
         class="button success"
         @click="saveImg"
       >
-        <i class="fal fa-save" />
+        <save-icon class="w-6 h-6" />
         <span>Save</span>
       </button>
     </div>
   </div>
 </template>
+
 <script>
+import { TrashIcon, PencilIcon, AdjustmentsIcon, ArrowsExpandIcon, PlusIcon, MinusIcon, RewindIcon, SaveIcon } from '@heroicons/vue/solid'
 import Editor from 'vue-image-markup';
 export default {
   components: {
     "Editor": Editor,
+    TrashIcon, PencilIcon, ArrowsExpandIcon, PlusIcon, MinusIcon, RewindIcon, SaveIcon
   },
   props: {
     items: {

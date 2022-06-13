@@ -28,8 +28,18 @@ return new class extends Migration {
             $table->json('generated_conversions');
             $table->json('responsive_images');
             $table->unsignedInteger('order_column')->nullable()->index();
+            $table->foreignId('category_id')->nullable();
 
             $table->nullableTimestamps();
         });
+    }
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('media');
     }
 };
