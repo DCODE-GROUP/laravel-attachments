@@ -4,21 +4,16 @@
   </div>
 </template>
 <script>
-
-import VImageMarkup from './VImageMarkup.vue'
+import VImageMarkup from "./VImageMarkup.vue";
 export default {
-  components: { VImageMarkup},
+  components: { VImageMarkup },
   props: {
     items: Array,
   },
   data() {
-    return {
-    };
+    return {};
   },
-  created() {
-
-  },
-  methods: {
-  },
+  created() {},
+  methods: {},
 };
 </script>

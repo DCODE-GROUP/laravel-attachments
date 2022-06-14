@@ -66,13 +66,13 @@ export default {
     parentModel: {
       type: Object,
       default() {
-        return {}
+        return {};
       },
       required: false,
     },
     parentModelClass: {
       type: String,
-      default: '',
+      default: "",
       required: false,
     },
     uploadEndpoint: {
@@ -113,7 +113,7 @@ export default {
     },
     headingText: {
       type: String,
-      default: '',
+      default: "",
       required: false,
     },
     compact: {
@@ -224,14 +224,17 @@ export default {
       this.media.push(media);
     },
 
-    destroy({id: mediaId, index}) {
+    destroy({ id: mediaId, index }) {
       if (confirm("Are you sure you want to remove this item")) {
-          const media = this.media[index]
-          const endpoint = media && media.hasOwnProperty('delete_endpoint') ? media.delete_endpoint: "/frontend/admin/media/delete/" + id
+        const media = this.media[index];
+        const endpoint =
+          media && media.hasOwnProperty("delete_endpoint")
+            ? media.delete_endpoint
+            : "/frontend/admin/media/delete/" + mediaId;
 
         axios
           .delete(endpoint)
-          .then(({data}) => {
+          .then(({ data }) => {
             // delete the row
             this.media.splice(index, 1);
           })
@@ -251,10 +254,7 @@ export default {
         return "media-video";
       }
 
-      if (
-        _.startsWith(file.mime_type, "application") ||
-              _.startsWith(file.mime_type, "text")
-      ) {
+      if (_.startsWith(file.mime_type, "application") || _.startsWith(file.mime_type, "text")) {
         return "media-application";
       }
 
@@ -262,21 +262,18 @@ export default {
     },
 
     formatBytes(bytes, decimals = 2) {
-      if (bytes === 0) return '0 Bytes';
+      if (bytes === 0) return "0 Bytes";
 
       const k = 1024;
       const dm = decimals < 0 ? 0 : decimals;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
       const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
     },
-
   },
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

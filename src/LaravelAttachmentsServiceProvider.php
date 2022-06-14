@@ -11,6 +11,8 @@ use Dcodegroup\LaravelAttachments\Http\Controllers\Media\DeleteController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\ExistingController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetCategoryController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\UploadController;
+use Dcodegroup\LaravelAttachments\Models\Media;
+use Dcodegroup\LaravelAttachments\Observer\MediaObserver;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +32,8 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
         $this->setUpTranslations();
         $this->setUpMigrations();
         $this->setUpViews();
+
+        Media::observe(MediaObserver::class);
     }
 
     protected function setUpConfig()

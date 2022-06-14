@@ -1,26 +1,16 @@
 <template>
   <div class="inline-field">
-    <header
-      v-show="showAlert === true"
-      class="alert success"
-    >
+    <header v-show="showAlert === true" class="alert success">
       <div>
-        <check-icon class="w-4 h-4" />
+        <check-icon class="h-4 w-4" />
         <small :v-text="alertText" />
       </div>
       <button>
-        <x-icon class="w-4 h-4" />
+        <x-icon class="h-4 w-4" />
       </button>
     </header>
-    <select
-      v-model="form.category_id"
-      @change="update"
-    >
-      <option
-        v-for="option in options"
-        :key="option.id"
-        :value="option.id"
-      >
+    <select v-model="form.category_id" @change="update">
+      <option v-for="option in options" :key="option.id" :value="option.id">
         {{ option.name }}
       </option>
     </select>
@@ -28,13 +18,14 @@
 </template>
 
 <script>
-import { CheckIcon, XIcon } from '@heroicons/vue/solid'
+import Form from "form-backend-validation";
+import { CheckIcon, XIcon } from "@heroicons/vue/solid";
 
 export default {
   name: "InlineCategoryUpdater",
   components: {
-      CheckIcon,
-      XIcon
+    CheckIcon,
+    XIcon,
   },
   props: {
     model: {
@@ -47,28 +38,28 @@ export default {
     },
     setEndpoint: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data() {
     return {
-      form: {
+      form: new Form({
         category_id: this.model.category_id,
-      },
+      }),
       showAlert: false,
       alertText: "",
     };
   },
   watch: {
     model(newValue, oldValue) {
-      this.form.category_id = newValue.category_id
+      this.form.category_id = newValue.category_id;
     },
   },
 
   methods: {
     update() {
-      axios
-        .patch(this.setEndpoint ? this.setEndpoint : `/api/generic/media/category/${this.model.id}`)
+      this.form
+        .patch(this.setEndpoint ? this.setEndpoint : `/frontend/admin/media/category/${this.model.id}`)
         .then((data) => {
           this.alertText = data.message;
           this.form.category_id = data.category_id;

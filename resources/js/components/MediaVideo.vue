@@ -1,14 +1,7 @@
 <template>
   <div>
-    <video
-      :width="width"
-      :height="height"
-      controls
-    >
-      <source
-        :src="media.url"
-        type="video/mp4"
-      >
+    <video :width="width" :height="height" controls>
+      <source :src="media.url" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   </div>

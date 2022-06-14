@@ -3,7 +3,7 @@
     ref="upload"
     v-model="files"
     name="file"
-    class="w-full border border-dashed border-gray-500 p-4 rounded flex items-center jusify-center !cursor-pointer hover:bg-gray-50"
+    class="jusify-center flex w-full !cursor-pointer items-center rounded border border-dashed border-gray-500 p-4 hover:bg-gray-50"
     :post-action="uploadEndpoint"
     :headers="{
       'X-CSRF-TOKEN': $root.csrf_token,
@@ -19,31 +19,31 @@
     @input-filter="inputFilter"
   >
     <div class="text-center">
-        <plus-icon class="w-12 h-12 mx-auto mb-4" />
-        <p>{{ $t('media.phrase.upload_area') }}</p>
-        <button
-          v-show="$refs.upload && $refs.upload.active"
-          type="button"
-          class="button secondary"
-          @click.prevent="$refs.upload.active = false"
-        >
-          {{ $t('media.buttons.cancel') }}
-        </button>
+      <plus-icon class="mx-auto mb-4 h-12 w-12" />
+      <p>{{ $t("media.phrase.upload_area") }}</p>
+      <button
+        v-show="$refs.upload && $refs.upload.active"
+        type="button"
+        class="button secondary"
+        @click.prevent="$refs.upload.active = false"
+      >
+        {{ $t("media.buttons.cancel") }}
+      </button>
     </div>
   </file-upload>
 </template>
 
 <script>
-import { PlusIcon } from '@heroicons/vue/solid'
-import VueUploadComponent from 'vue-upload-component';
-import Icon from './Icon.vue';
+import { PlusIcon } from "@heroicons/vue/solid";
+import VueUploadComponent from "vue-upload-component";
+import Icon from "./Icon.vue";
 export default {
-  name: 'Upload',
+  name: "Upload",
 
   components: {
     FileUpload: VueUploadComponent,
     Icon,
-    PlusIcon
+    PlusIcon,
   },
 
   props: {
@@ -62,15 +62,15 @@ export default {
     },
     uploadEndpoint: {
       type: String,
-      default: '/frontend/admin/media/upload',
+      default: "/frontend/admin/media/upload",
     },
     existingEndpoint: {
       type: String,
-      default: '/frontend/admin/media/existing',
+      default: "/frontend/admin/media/existing",
     },
     displayStyle: {
       type: String,
-      default: 'list',
+      default: "list",
     },
     newFileUploaded: {
       type: Function,
@@ -80,7 +80,7 @@ export default {
     },
     iconName: {
       type: String,
-      default: 'plus',
+      default: "plus",
     },
     iconWidth: {
       type: Number,
@@ -190,9 +190,9 @@ export default {
       // if (URL && URL.createObjectURL) {
       //     newFile.blob = URL.createObjectURL(newFile.file);
       // }
-      if (newFile && newFile.error === '' && newFile.file && (!oldFile || newFile.file !== oldFile.file)) {
+      if (newFile && newFile.error === "" && newFile.file && (!oldFile || newFile.file !== oldFile.file)) {
         // Create a blob field
-        newFile.blob = '';
+        newFile.blob = "";
         const URL = window.URL || window.webkitURL;
         if (URL) {
           newFile.blob = URL.createObjectURL(newFile.file);
@@ -201,7 +201,7 @@ export default {
         // console.log("blob", newFile.blob);
 
         // Thumbnails
-        newFile.thumb = '';
+        newFile.thumb = "";
         if (newFile.blob) {
           newFile.thumb = newFile.blob;
         }

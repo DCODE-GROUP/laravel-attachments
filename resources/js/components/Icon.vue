@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'Icon',
+  name: "Icon",
   props: {
     name: {
       type: String,
@@ -15,7 +15,7 @@ export default {
     },
     strokeColor: {
       type: String,
-      default: '',
+      default: "",
     },
     width: {
       type: Number,
@@ -23,10 +23,10 @@ export default {
     },
   },
   mounted() {
-    const svg = this.$refs.icon.querySelector('svg');
+    const svg = this.$refs.icon.querySelector("svg");
     svg.style.width = `${this.width}px`;
     if (this.strokeColor) {
-      const paths = this.$refs.icon.getElementsByTagName('path');
+      const paths = this.$refs.icon.getElementsByTagName("path");
 
       Object.keys(paths).forEach(
         function (key) {
@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     svg() {
-      return '<svg></svg>';
+      return "<svg></svg>";
     },
   },
 };

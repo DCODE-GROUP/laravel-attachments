@@ -15,7 +15,7 @@
     @isset($selectExisting)
     add-existing-endpoint="{{ route('frontend.admin.media.existing', ['modelClass' => get_class($selectExisting), 'modelId' => $selectExisting->id]) }}"
     @endisset
-    @hasanyrole('Staff|Admin')
+    @hasanyrole('super admin|admin')
     :permit-delete="true"
     {{-- Permit edit needs to set to true, roles are not set correctly on my local --}}
     :permit-edit="true"

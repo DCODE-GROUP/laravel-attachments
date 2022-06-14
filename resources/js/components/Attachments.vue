@@ -1,59 +1,59 @@
 <template>
-  <div
-    class="attachments grid grid-cols-4 gap-4 mb-8 pb-8 border-b border-gray-300"
-    :class="displayStyle"
-  >
+  <div class="attachments mb-8 grid grid-cols-4 gap-4 border-b border-gray-300 pb-8" :class="displayStyle">
     <menu v-if="categories.length">
-      <button class="flex items-center w-full hover:bg-gray-200 px-4 py-2 rounded" @click="reset">
-        <folder-icon class="w-6 mr-2" />
-        {{ $t('media.words.home') }}
+      <button class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200" @click="reset">
+        <folder-icon class="mr-2 w-6" />
+        {{ $t("media.words.home") }}
       </button>
       <ul class="pl-4">
-        <li :class="{'open' : activeFolder === 'model'}">
+        <li :class="{ open: activeFolder === 'model' }">
           <button
-            class="flex items-center w-full hover:bg-gray-200 px-4 py-2 rounded"
+            class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200"
             @click="refineCategory(currentCategory, 'model')"
           >
-            <folder-open-icon class="w-6 mr-2" v-if="activeFolder === 'model'" />
-            <folder-icon class="w-6 mr-2" v-else />
-            {{ $t('media.headings.model') }}
+            <folder-open-icon class="mr-2 w-6" v-if="activeFolder === 'model'" />
+            <folder-icon class="mr-2 w-6" v-else />
+            {{ $t("media.headings.model") }}
           </button>
           <ul class="pl-4">
             <li
               v-for="category in categories"
               :key="category.id"
               class="mb-1"
-              :class="{'open' : currentCategory.id === category.id && activeFolder === 'model'}"
+              :class="{ open: currentCategory.id === category.id && activeFolder === 'model' }"
             >
-              <button class="flex items-center w-full hover:bg-gray-200 px-4 py-2 rounded" @click="refineCategory(category, 'model')">
-                <folder-open-icon class="w-6 mr-2" v-if="currentCategory.id === category.id && activeFolder === 'model'" />
-                <folder-icon class="w-6 mr-2" v-else />
+              <button
+                class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200"
+                @click="refineCategory(category, 'model')"
+              >
+                <folder-open-icon
+                  class="mr-2 w-6"
+                  v-if="currentCategory.id === category.id && activeFolder === 'model'"
+                />
+                <folder-icon class="mr-2 w-6" v-else />
                 {{ category.name }}
               </button>
             </li>
           </ul>
         </li>
-        <li
-          v-if="parentModel && parentModelClass"
-          :class="{'open' : activeFolder === 'parent'}"
-        >
-          <button
-            class="flex items-center"
-            @click="refineCategory(currentCategory, 'parent')"
-          >
-            <folder-open-icon class="w-6 mr-2" v-if="activeFolder === 'parent'" />
-            <folder-icon class="w-6 mr-2" v-else />
-            {{ $t('media.headings.parent') }}
+        <li v-if="parentModel && parentModelClass" :class="{ open: activeFolder === 'parent' }">
+          <button class="flex items-center" @click="refineCategory(currentCategory, 'parent')">
+            <folder-open-icon class="mr-2 w-6" v-if="activeFolder === 'parent'" />
+            <folder-icon class="mr-2 w-6" v-else />
+            {{ $t("media.headings.parent") }}
           </button>
           <ul>
             <li
               v-for="category in categories"
               :key="category.id"
-              :class="{'open' : currentCategory.id === category.id && activeFolder === 'parent' }"
+              :class="{ open: currentCategory.id === category.id && activeFolder === 'parent' }"
             >
               <button class="flex items-center" @click="refineCategory(category, 'parent')">
-                <folder-open-icon class="w-6 mr-2" v-if="currentCategory.id === category.id && activeFolder === 'parent'" />
-                <folder-icon class="w-6 mr-2" v-else />
+                <folder-open-icon
+                  class="mr-2 w-6"
+                  v-if="currentCategory.id === category.id && activeFolder === 'parent'"
+                />
+                <folder-icon class="mr-2 w-6" v-else />
                 {{ category.name }}
               </button>
             </li>
@@ -77,7 +77,7 @@
       :show-only="showOnly"
       :current-category="currentCategory"
       :media="media"
-      :class="{'no-cats' : categories.length === 0}"
+      :class="{ 'no-cats': categories.length === 0 }"
     />
     <model-media
       v-if="activeFolder === 'parent'"
@@ -93,13 +93,13 @@
       :show-only="showOnly"
       :current-category="currentCategory"
       :media="media"
-      :class="{'no-cats' : categories.length === 0 }"
+      :class="{ 'no-cats': categories.length === 0 }"
     />
   </div>
 </template>
 
 <script>
-import { FolderIcon, FolderOpenIcon } from '@heroicons/vue/solid'
+import { FolderIcon, FolderOpenIcon } from "@heroicons/vue/solid";
 import ModelMedia from "./ModelMedia.vue";
 import bytes from "bytes";
 
@@ -111,10 +111,9 @@ export default {
   components: {
     ModelMedia,
     FolderIcon,
-    FolderOpenIcon
+    FolderOpenIcon,
   },
-  filters: {
-  },
+  filters: {},
   props: {
     model: {
       type: Object,
@@ -131,7 +130,7 @@ export default {
     },
     parentModelClass: {
       type: String,
-      default: '',
+      default: "",
       required: false,
     },
     uploadEndpoint: {
@@ -187,9 +186,9 @@ export default {
       default: false,
     },
   },
-  data: function() {
+  data: function () {
     return {
-      activeFolder: 'model',
+      activeFolder: "model",
       fullCategoryOptions: [],
       media: [],
       categories: [],
@@ -229,7 +228,7 @@ export default {
     },
     updateParents(category) {
       if (this.parentCategories.length > 0) {
-        let lastItem = this.parentCategories[this.parentCategories.length - 1];
+        const lastItem = this.parentCategories[this.parentCategories.length - 1];
         // if last item in the array has the same parent then remove it
         if (lastItem.parent_id === category.parent_id) {
           this.parentCategories.pop();
@@ -239,8 +238,8 @@ export default {
         this.parentCategories.push(category);
       }
     },
-    refineCategory(category = { id: null, parent_id: null }, folder = 'model') {
-      this.activeFolder = folder
+    refineCategory(category = { id: null, parent_id: null }, folder = "model") {
+      this.activeFolder = folder;
       this.currentCategory = category;
       this.updateParents(category);
       this.getExisting();
@@ -260,32 +259,32 @@ export default {
     getExisting() {
       let params = {
         category_id: this.currentCategory.id,
-      }
-      if (this.activeFolder === 'model') {
+      };
+      if (this.activeFolder === "model") {
         params = {
           ...params,
           modelClass: this.modelClass,
           modelId: this.model.id,
-        }
-      } else if (this.activeFolder === 'parent') {
+        };
+      } else if (this.activeFolder === "parent") {
         if (this.parentModel) {
           params = {
             ...params,
             modelClass: this.parentModelClass,
             modelId: this.parentModel.id,
-          }
+          };
         } else {
-          console.error('activeFolder is parent but missing parentModel')
+          console.error("activeFolder is parent but missing parentModel");
         }
       }
       axios
-        .get(this.activeFolder === 'model' ? this.modelExistingEndpoint : this.parentExistingEndpoint, {
+        .get(this.activeFolder === "model" ? this.modelExistingEndpoint : this.parentExistingEndpoint, {
           params,
         })
         .then(({ data }) => {
           this.media = [];
           if (data.length) {
-            console.log('getExisting media: ', { data })
+            console.log("getExisting media: ", { data });
             this.media = data;
           }
         })
@@ -302,11 +301,11 @@ export default {
       this.media.push(media);
     },
 
-    destroy({id: mediaId, index}) {
+    destroy({ id: mediaId, index }) {
       if (confirm("Are you sure you want to remove this item")) {
         axios
           .delete("/frontend/admin/media/delete/" + mediaId)
-          .then(({data}) => {
+          .then(({ data }) => {
             // delete the row
             this.media.splice(index, 1);
           })
@@ -326,10 +325,7 @@ export default {
         return "media-video";
       }
 
-      if (
-        _.startsWith(file.mime_type, "application") ||
-                _.startsWith(file.mime_type, "text")
-      ) {
+      if (_.startsWith(file.mime_type, "application") || _.startsWith(file.mime_type, "text")) {
         return "media-application";
       }
 
@@ -337,15 +333,15 @@ export default {
     },
 
     formatBytes(bytes, decimals = 2) {
-      if (bytes === 0) return '0 Bytes';
+      if (bytes === 0) return "0 Bytes";
 
       const k = 1024;
       const dm = decimals < 0 ? 0 : decimals;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+      const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
 
       const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
     },
   },
 };

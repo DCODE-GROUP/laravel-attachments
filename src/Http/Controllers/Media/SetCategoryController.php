@@ -15,10 +15,8 @@ class SetCategoryController
     {
         $this->authorize('update', $media);
 
-        /**
-         * The update is getting performed in  app/Observers/MediaObserver.php
-         * saving method. Spo we only need to save here
-         */
+        $media->category_id = $request->input('category_id');
+
         $media->save();
 
         return response()->json([

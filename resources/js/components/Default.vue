@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import MediaElement from '../mixins/MediaElement';
+import MediaElement from "../mixins/MediaElement";
 
 export default {
-  name: 'Default',
+  name: "Default",
   extends: MediaElement,
 };
 </script>

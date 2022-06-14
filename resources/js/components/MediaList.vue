@@ -19,17 +19,9 @@
     </thead>
     <tbody v-if="media.length">
       <template v-for="(item, index) in media">
-        <tr
-          v-if="item"
-          :key="index"
-        >
+        <tr v-if="item" :key="index">
           <td>
-            <component
-              :is="getComponent(item)"
-              :media="item"
-              display-style="list"
-              class="square-thumb"
-            />
+            <component :is="getComponent(item)" :media="item" display-style="list" class="square-thumb" />
           </td>
           <td @click="$emit('click', item)">
             {{ item.custom_properties.original_filename }}
@@ -49,12 +41,8 @@
           </td>
           <td class="actions">
             <menu>
-              <button
-                v-if="allowEditing"
-                class="button -hollow sml"
-                @click="fireEditEvent(item)"
-              >
-                <pencil-icon class="w-6 h-6" />
+              <button v-if="allowEditing" class="button -hollow sml" @click="fireEditEvent(item)">
+                <pencil-icon class="h-6 w-6" />
               </button>
               <button
                 v-if="allowDeleting"
@@ -62,16 +50,14 @@
                 type="submit"
                 @click="fireDeletedEvent(item, index)"
               >
-                <trash-icon class="w-6 h-6" />
+                <trash-icon class="h-6 w-6" />
               </button>
             </menu>
           </td>
         </tr>
       </template>
       <tr>
-        <td
-          colspan="6"
-        >
+        <td colspan="6">
           <upload
             v-if="allowUploading"
             :model="model"
@@ -88,23 +74,19 @@
     </tbody>
     <tbody v-else>
       <tr>
-        <td
-          colspan="6"
-        >
-          <p class="text-warning mb-2 text-center">
-            No media uploaded...
-          </p>
-            <upload
-                v-if="allowUploading"
-                :model="model"
-                :model-class="modelClass"
-                :category-id="categoryId"
-                :upload-endpoint="uploadEndpoint"
-                display-style="list"
-                :media="media"
-                :new-file-uploaded="fireUploadedEvent"
-                class="horizontal-uploader"
-            />
+        <td colspan="6">
+          <p class="text-warning mb-2 text-center">No media uploaded...</p>
+          <upload
+            v-if="allowUploading"
+            :model="model"
+            :model-class="modelClass"
+            :category-id="categoryId"
+            :upload-endpoint="uploadEndpoint"
+            display-style="list"
+            :media="media"
+            :new-file-uploaded="fireUploadedEvent"
+            class="horizontal-uploader"
+          />
         </td>
       </tr>
     </tbody>
@@ -112,15 +94,15 @@
 </template>
 
 <script>
-import { PencilIcon, TrashIcon } from '@heroicons/vue/solid'
-import bytes from 'bytes';
-import Upload from './Upload.vue';
-import MediaImage from './MediaImage.vue';
-import MediaVideo from './MediaVideo.vue';
-import MediaApplication from './MediaApplication.vue';
-import Default from './Default.vue';
-import Icon from './Icon.vue';
-import InlineCategoryUpdater from './InlineCategoryUpdater.vue';
+import { PencilIcon, TrashIcon } from "@heroicons/vue/solid";
+import bytes from "bytes";
+import Upload from "./Upload.vue";
+import MediaImage from "./MediaImage.vue";
+import MediaVideo from "./MediaVideo.vue";
+import MediaApplication from "./MediaApplication.vue";
+import Default from "./Default.vue";
+import Icon from "./Icon.vue";
+import InlineCategoryUpdater from "./InlineCategoryUpdater.vue";
 
 export default {
   components: {
@@ -132,7 +114,7 @@ export default {
     InlineCategoryUpdater,
     Icon,
     PencilIcon,
-    TrashIcon
+    TrashIcon,
   },
   props: {
     media: {
@@ -144,7 +126,7 @@ export default {
       default: () => [],
     },
     categoryId: {
-      type: [String,Number],
+      type: [String, Number],
       default: null,
       required: false,
     },
@@ -163,12 +145,12 @@ export default {
     },
     parentModelClass: {
       type: String,
-      default: '',
+      default: "",
       required: true,
     },
     uploadEndpoint: {
       type: String,
-      default: "/api/admin/media/upload",
+      default: "/frontend/admin/media/upload",
     },
     allowUploading: {
       type: Boolean,
@@ -206,7 +188,7 @@ export default {
     },
     getComponent(file) {
       if (!file) {
-        return "default"
+        return "default";
       }
       if (_.startsWith(file.mime_type, "image")) {
         return "media-image";
@@ -216,49 +198,46 @@ export default {
         return "media-video";
       }
 
-      if (
-        this.isApplication(file)
-      ) {
+      if (this.isApplication(file)) {
         return "media-application";
       }
 
       return "default";
     },
     isApplication(file) {
-      return _.startsWith(file.mime_type, "application") ||
-                _.startsWith(file.mime_type, "text")
+      return _.startsWith(file.mime_type, "application") || _.startsWith(file.mime_type, "text");
     },
     fireUploadedEvent(item) {
-      this.$emit('media-uploaded', item);
+      this.$emit("media-uploaded", item);
     },
     fireDeletedEvent(item, index) {
-      this.$emit('media-deleted', {id: item.id, index: index});
+      this.$emit("media-deleted", { id: item.id, index: index });
     },
     fireEditEvent(item) {
       // console.log("reached fireEditEvent", item)
-      this.$root.$emit('openSidePanel', {
-        componentName: 'SidePanelImageMarkup',
-        componentData: {
-          items: this.getMedia(item),
-        },
-        title: `Edit ${item.custom_properties.original_filename}`,
-      });
+      // this.$root.$emit("openSidePanel", {
+      //   componentName: "SidePanelImageMarkup",
+      //   componentData: {
+      //     items: this.getMedia(item),
+      //   },
+      //   title: `Edit ${item.custom_properties.original_filename}`,
+      // });
     },
     getMedia(item) {
       if (this.isApplication(item) && item.children.length) {
         return item.children.map((o) => {
-          o.width = 'auto'
-          o.height = 'auto'
+          o.width = "auto";
+          o.height = "auto";
 
-          return o
-        })
+          return o;
+        });
       }
 
-      item.width = 'auto'
-      item.height = 'auto'
+      item.width = "auto";
+      item.height = "auto";
 
-      return [item]
+      return [item];
     },
   },
-}
+};
 </script>

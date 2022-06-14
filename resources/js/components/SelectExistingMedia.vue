@@ -1,27 +1,14 @@
 <template>
   <div>
-    <a
-      class="button -hollow"
-      @click="show = true"
-    >
-      {{ $t('media.words.select_existing') }}
+    <a class="button -hollow" @click="show = true">
+      {{ $t("media.words.select_existing") }}
     </a>
     <transition name="fade">
-      <div
-        v-if="show"
-        class="modal-wrapper"
-        @click="show = false"
-      >
-        <div
-          class="modal"
-          @click.stop
-        >
-          <h2>{{ $t('media.table.headings.select_existing') }}</h2>
-          <div
-            class="close"
-            @click="show = false"
-          >
-            <x-icon class="w-6 h-6" />
+      <div v-if="show" class="modal-wrapper" @click="show = false">
+        <div class="modal" @click.stop>
+          <h2>{{ $t("media.table.headings.select_existing") }}</h2>
+          <div class="close" @click="show = false">
+            <x-icon class="h-6 w-6" />
           </div>
           <div class="content">
             <media-list
@@ -42,11 +29,11 @@
 </template>
 
 <script>
-import { CheckIcon, XIcon } from '@heroicons/vue/solid'
-import MediaList from './MediaList.vue';
+import { CheckIcon, XIcon } from "@heroicons/vue/solid";
+import MediaList from "./MediaList.vue";
 
 export default {
-  components: {MediaList},
+  components: { MediaList },
   props: {
     model: {
       type: Object,
@@ -62,14 +49,14 @@ export default {
     },
     attachMediaEndpoint: {
       type: String,
-      default: '/frontend/admin/media/attach',
+      default: "/frontend/admin/media/attach",
     },
   },
   data() {
     return {
       show: false,
       existingMedia: [],
-    }
+    };
   },
   watch: {
     show(newValue, oldValue) {
@@ -80,7 +67,8 @@ export default {
   },
   methods: {
     loadMedia() {
-      axios.get(this.mediaEndpoint)
+      axios
+        .get(this.mediaEndpoint)
         .then(({ data }) => {
           // console.log(data);
           if (data.length) {
@@ -98,10 +86,10 @@ export default {
         })
         .then(() => {
           // If succeeded, emit event.
-          this.$emit('media-selected', media);
+          this.$emit("media-selected", media);
         })
         .catch(console.error);
     },
   },
-}
+};
 </script>
