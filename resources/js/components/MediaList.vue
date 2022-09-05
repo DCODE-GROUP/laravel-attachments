@@ -5,6 +5,12 @@
         <th colspan="2">
           {{ $t("media.table.headings.details") }}
         </th>
+        <th>
+          {{ $t("media.table.headings.title") }}
+        </th>
+        <th>
+            {{ $t("media.table.headings.alt_text") }}
+        </th>
         <th v-if="categoryOptions.length && allowUpdatingCategory">
           {{ $t("media.table.headings.category") }}
         </th>
@@ -25,6 +31,18 @@
           </td>
           <td @click="$emit('click', item)">
             {{ item.custom_properties.original_filename }}
+          </td>
+          <td>
+            <title-updater
+                :model="item"
+                :set-endpoint="item.hasOwnProperty('set_title_endpoint') ? item.set_title_endpoint : null"
+            ></title-updater>
+          </td>
+          <td>
+            <alt-text-updater
+                :model="item"
+                :set-endpoint="item.hasOwnProperty('set_alt_text_endpoint') ? item.set_alt_text_endpoint : null"
+            ></alt-text-updater>
           </td>
           <td v-if="categoryOptions.length && allowUpdatingCategory">
             <inline-category-updater
@@ -103,6 +121,8 @@ import MediaApplication from "./MediaApplication.vue";
 import Default from "./Default.vue";
 import Icon from "./Icon.vue";
 import InlineCategoryUpdater from "./InlineCategoryUpdater.vue";
+import TitleUpdater from "./TitleUpdater.vue";
+import AltTextUpdater from "./AltTextUpdater.vue";
 
 export default {
   components: {
@@ -112,6 +132,8 @@ export default {
     Default,
     Upload,
     InlineCategoryUpdater,
+    TitleUpdater,
+    AltTextUpdater,
     Icon,
     PencilIcon,
     TrashIcon,
