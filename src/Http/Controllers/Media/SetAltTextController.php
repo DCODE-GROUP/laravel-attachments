@@ -4,9 +4,9 @@ namespace Dcodegroup\LaravelAttachments\Http\Controllers\Media;
 
 use Dcodegroup\LaravelAttachments\Http\Requests\Media\SetAltTextRequest;
 use Dcodegroup\LaravelAttachments\Models\Media;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class SetAltTextController
 {
