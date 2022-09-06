@@ -17,6 +17,8 @@ return [
             'details' => 'File Details',
             'size' => 'Size',
             'created_at' => 'Uploaded',
+            'title' => 'Title',
+            'alt_text' => 'Alt text',
         ],
     ],
 

@@ -30,7 +30,9 @@
                     "details": "File Details",
                     "size": "Size",
                     "created_at": "Uploaded",
-                    "category": "Category"
+                    "category": "Category",
+                    "title": "Title",
+                    "alt_text": "Alt text"
                 }
             },
             "phrase": {

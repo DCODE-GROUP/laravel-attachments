@@ -9,7 +9,9 @@ use Dcodegroup\LaravelAttachments\Http\Controllers\Categories\OptionsController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\AttachController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\DeleteController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\ExistingController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetAltTextController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetCategoryController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetTitleController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\UploadController;
 use Dcodegroup\LaravelAttachments\Models\Media;
 use Dcodegroup\LaravelAttachments\Observer\MediaObserver;
@@ -53,6 +55,9 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
             Route::post("$prefix/upload", UploadController::class)->name("$name.upload");
             Route::get("$prefix/existing", ExistingController::class)->name("$name.existing");
             Route::delete("$prefix/delete/{media}", DeleteController::class)->name("$name.delete");
+
+            Route::patch("$prefix/title/{media}", SetTitleController::class)->name("$name.title");
+            Route::patch("$prefix/alttext/{media}", SetAltTextController::class)->name("$name.alttext");
         });
 
         Route::macro('attachmentAnnotations', function (
