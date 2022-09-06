@@ -236,14 +236,7 @@ export default {
       this.$emit("media-deleted", { id: item.id, index: index });
     },
     fireEditEvent(item) {
-      // console.log("reached fireEditEvent", item)
-      // this.$root.$emit("openSidePanel", {
-      //   componentName: "SidePanelImageMarkup",
-      //   componentData: {
-      //     items: this.getMedia(item),
-      //   },
-      //   title: `Edit ${item.custom_properties.original_filename}`,
-      // });
+      this.$emit("media-edited", item);
     },
     getMedia(item) {
       if (this.isApplication(item) && item.children.length) {

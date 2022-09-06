@@ -292,12 +292,10 @@ export default {
     },
 
     appendToMedia(item) {
-      // console.log("media", item);
       this.media.push(item);
     },
 
     addSelectedMedia(media) {
-      // console.log("media", media);
       this.media.push(media);
     },
 
@@ -321,7 +319,6 @@ export default {
       }
 
       if (_.startsWith(file.mime_type, "video")) {
-        // return "video-" + this.displayStyle;
         return "media-video";
       }
 

@@ -79,10 +79,6 @@ export default {
       type: String,
       default: "/frontend/admin/media/upload",
     },
-    // existingEndpoint: {
-    //   type: String,
-    //   default: "/frontend/admin/media/existing",
-    // },
     addExistingEndpoint: {
       type: String,
       default: "/frontend/admin/media/existing",
@@ -128,99 +124,20 @@ export default {
       type: Array,
       required: true,
     },
-    // categoriesEndpoint: {
-    //   type: String,
-    //   default: "/frontend/admin/category/options",
-    // },
   },
 
   data: function () {
     return {
       files: [],
-      // media: [],
-
-      // categories: [],
-      // parentCategories: [],
-      // currentCategory: {
-      //   id: null,
-      //   parent_id: null,
-      // },
     };
   },
 
-  // mounted() {
-  //   // this.getExisting();
-  //   this.refineCategory();
-  // },
-
   methods: {
-    // reset() {
-    //   this.parentCategories = [];
-    //   this.currentCategory = {
-    //     id: null,
-    //     parent_id: null,
-    //   };
-
-    //   this.refineCategory();
-    // },
-
-    // updateParents(category) {
-    //   if (this.parentCategories.length > 0) {
-    //     let lastItem = this.parentCategories[this.parentCategories.length - 1];
-    //     // if last item in the array has the same parent then remove it
-    //     if (lastItem.parent_id === category.parent_id) {
-    //       this.parentCategories.pop();
-    //     }
-    //   }
-    //   if (this.parentCategories.indexOf(category) && category.id !== null) {
-    //     this.parentCategories.push(category);
-    //   }
-    // },
-
-    // refineCategory(category = {id: null, parent_id: null}) {
-    //   this.currentCategory = category;
-
-    //   this.updateParents(category);
-
-    //   this.getExisting();
-
-    //   axios
-    //     .get(this.categoriesEndpoint, {
-    //       params: {
-    //         parent_id: category.id,
-    //       },
-    //     })
-    //     .then(({data}) => {
-    //       if (data.length) {
-    //         this.categories = data;
-    //       }
-    //     })
-    //     .catch(console.error);
-    // },
-
-    // getExisting() {
-    //   axios
-    //     .get(this.existingEndpoint, {
-    //       params: {
-    //         category_id: this.currentCategory.id,
-    //       },
-    //     })
-    //     .then(({data}) => {
-    //       this.media = [];
-    //       if (data.length) {
-    //         this.media = data;
-    //       }
-    //     })
-    //     .catch(console.error);
-    // },
-
     appendToMedia(item) {
-      // console.log("media", item);
       this.media.push(item);
     },
 
     addSelectedMedia(media) {
-      // console.log("media", media);
       this.media.push(media);
     },
 
@@ -250,7 +167,6 @@ export default {
       }
 
       if (_.startsWith(file.mime_type, "video")) {
-        // return "video-" + this.displayStyle;
         return "media-video";
       }
 

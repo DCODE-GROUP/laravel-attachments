@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { CheckIcon, XIcon } from "@heroicons/vue/solid";
 import MediaList from "./MediaList.vue";
 
 export default {
