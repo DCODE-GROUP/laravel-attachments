@@ -6,7 +6,6 @@ use Dcodegroup\LaravelAttachments\Http\Requests\Media\SetTitleRequest;
 use Dcodegroup\LaravelAttachments\Models\Media;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class SetTitleController
 {
@@ -21,7 +20,7 @@ class SetTitleController
         $media->save();
 
         return response()->json([
-            'message'     => __('attachments::category.status.update_success'),
+            'message' => __('attachments::category.status.update_success'),
             'title' => $request->input('title'),
         ]);
     }

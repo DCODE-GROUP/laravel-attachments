@@ -19,7 +19,7 @@ class DeleteAnnotationController
 
         return response()->json([
             'message' => __('attachments::annotations.responses.delete_success'),
-            'status'  => 201,
+            'status' => 201,
         ], 201);
     }
 }

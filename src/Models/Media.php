@@ -166,7 +166,6 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
     /**
      * Get a filename for the file.
      *
-     * @param  string  $extension
      *
      * @return string
      */

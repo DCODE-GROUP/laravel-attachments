@@ -20,7 +20,7 @@ class SetCategoryController
         $media->save();
 
         return response()->json([
-            'message'     => __('attachments::category.status.update_success'),
+            'message' => __('attachments::category.status.update_success'),
             'category_id' => $request->input('category_id'),
         ]);
     }
