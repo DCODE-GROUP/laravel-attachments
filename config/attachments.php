@@ -22,4 +22,6 @@ return [
         // annotations
         // categories
     ],
+
+    'route_name_prefix' => env('LARAVEL_ATTACHMENTS_ROUTE_NAME_PREFIX', 'frontend.admin'),
 ];

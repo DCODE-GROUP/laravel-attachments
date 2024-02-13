@@ -13,7 +13,6 @@ use ImagickException;
 
 class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 {
-    use HasFactory;
 
     /**
      * The relations to eager load on every query.
@@ -101,7 +100,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getAddAnnotationEndpointAttribute()
     {
-        return route('frontend.admin.media.annotations.store', $this);
+        return route(config('attachments.route_name_prefix').'.media.annotations.store', $this);
     }
 
     public function getPreviewApplicationUrlAttribute()
