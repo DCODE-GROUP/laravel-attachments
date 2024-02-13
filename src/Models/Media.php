@@ -2,7 +2,6 @@
 
 namespace Dcodegroup\LaravelAttachments\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -13,7 +12,6 @@ use ImagickException;
 
 class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 {
-
     /**
      * The relations to eager load on every query.
      *
