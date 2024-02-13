@@ -83,6 +83,23 @@ Then change the media model used to
 ```
 
 
+## Security
+
+You will need to implement a `MediaPolicy` to control access to the media.
+
+Then add to `AuthServiceProvider`
+
+
+```php
+    protected $policies = [
+        ...
+        Media::class => MediaPolicy::class,
+    ];
+
+```
+
+
+
 ## Usage
 
 Add the template to the edit page you want.
