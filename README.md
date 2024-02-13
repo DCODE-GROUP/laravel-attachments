@@ -13,6 +13,8 @@ php artisan vendor:publish --provider="DcodeGroup\LaravelAttachments\Providers\A
 ```
 
 
+## Routes 
+
 Add the Routes to the file you need.
 
 ```php
@@ -21,6 +23,19 @@ Route::attachmentAnnotations();
 Route::attachmentCategories();
 ```
 
+## Frontend
+
+Add the following file to to your css file.
+
+```css
+ @import "../../vendor/dcodegroup/laravel-attachments/resources/postcss/attachments.pcss";
+```
+
+```js
+import attachmentPlugin from "../../vendor/dcodegroup/laravel-attachments/resources/js/plugin"
+
+app.use(attachmentPlugin)
+```
 
 Configuration file contains
 
