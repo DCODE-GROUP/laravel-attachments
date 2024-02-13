@@ -18,11 +18,11 @@ class StoreAnnotationController
         $media->annotations()->delete();
 
         $insertableItems = collect($request->input('annotations'))->map(fn (array $item) => array_merge(collect($item)
-                ->only([
-                    'content',
-                    'hidden',
-                ])
-                ->toArray(), [
+            ->only([
+                'content',
+                'hidden',
+            ])
+            ->toArray(), [
                     'created_at' => now()->toDateTimeString(),
                     'updated_at' => now()->toDateTimeString(),
                     'media_id' => $media->id,

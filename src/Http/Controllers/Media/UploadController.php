@@ -31,12 +31,12 @@ class UploadController
         $type = $file->getMimeType() ? Str::before($file->getMimeType(), '/') : 'default';
 
         $media = $model->addMediaFromRequest('file')
-                       ->usingFileName($file->hashName())
-                       ->withCustomProperties([
-                           'original_filename' => $file->getClientOriginalName(),
-                           'encoding_format' => $file->extension(),
-                       ])
-                       ->toMediaCollection($type);
+            ->usingFileName($file->hashName())
+            ->withCustomProperties([
+                'original_filename' => $file->getClientOriginalName(),
+                'encoding_format' => $file->extension(),
+            ])
+            ->toMediaCollection($type);
 
         return response()->json([
             'message' => __('attachments::media.status.upload_success'),
