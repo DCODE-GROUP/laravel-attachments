@@ -12,6 +12,16 @@ Then run
 php artisan vendor:publish --provider="DcodeGroup\LaravelAttachments\Providers\AttachmentsServiceProvider"
 ```
 
+
+Add the Routes to the file you need.
+
+```php
+Route::attachments();
+Route::attachmentAnnotations();
+Route::attachmentCategories();
+```
+
+
 Configuration file contains
 
 ```php
