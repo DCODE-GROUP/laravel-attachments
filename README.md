@@ -64,8 +64,22 @@ return [
         // annotations
         // categories
     ],
+    
+        'route_name_prefix' => env('LARAVEL_ATTACHMENTS_ROUTE_NAME_PREFIX', 'attachments'),
 ];
 
+```
+
+Ensure the publish the config file from the Spatie Media Library.
+
+```bash
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
+```
+
+Then change the media model used to 
+
+```php
+    'media_model' => \Dcodegroup\LaravelAttachments\Models\Media::class,
 ```
 
 
