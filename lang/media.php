@@ -19,6 +19,7 @@ return [
             'created_at' => 'Uploaded',
             'title' => 'Title',
             'alt_text' => 'Alt text',
+            'category' => 'Category',
         ],
     ],
 
