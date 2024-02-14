@@ -2,8 +2,8 @@
 
 namespace Dcodegroup\LaravelAttachments\Http\Controllers\Annotations;
 
-use Dcodegroup\LaravelAttachments\Models\MediaAnnotation;
 use Dcodegroup\LaravelAttachments\Models\Media;
+use Dcodegroup\LaravelAttachments\Models\MediaAnnotation;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
