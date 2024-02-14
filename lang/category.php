@@ -2,9 +2,9 @@
 
 return [
     'words' => [
-        'title' => 'Category',
+        'title' => 'Media Category',
     ],
     'status' => [
-        'update_success' => 'Category Successfully Set',
+        'update_success' => 'Media Category Successfully Set',
     ],
 ];

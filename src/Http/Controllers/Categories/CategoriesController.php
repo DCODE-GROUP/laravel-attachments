@@ -2,7 +2,7 @@
 
 namespace Dcodegroup\LaravelAttachments\Http\Controllers\Categories;
 
-use Dcodegroup\LaravelAttachments\Models\Category;
+use Dcodegroup\LaravelAttachments\Models\MediaCategory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ class CategoriesController
 
     public function __invoke(Request $request): Collection|array
     {
-        $query = Category::query();
+        $query = MediaCategory::query();
 
         if ($request->filled('type')) {
             $query->byType($request->input('type'));

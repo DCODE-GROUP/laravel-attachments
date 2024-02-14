@@ -70,7 +70,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(MediaCategory::class);
     }
 
     public function annotations(): HasMany
@@ -83,7 +83,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         return $this->hasMany(self::class, 'parent_id', 'id');
     }
 
-    private function getImageUrl(string $conversionName = '')
+    private function getImageUrl(?string $conversionName = '')
     {
         if ($this->parent_id) {
             return Storage::disk(config('filesystems.default'))->url($this->file_name);

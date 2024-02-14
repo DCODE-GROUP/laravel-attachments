@@ -2,7 +2,7 @@
 
 namespace Dcodegroup\LaravelAttachments\Http\Controllers\Categories;
 
-use Dcodegroup\LaravelAttachments\Models\Category;
+use Dcodegroup\LaravelAttachments\Models\MediaCategory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -13,7 +13,7 @@ class OptionsController
 
     public function __invoke(Request $request): array
     {
-        $query = Category::query()->with('childrenRecursive');
+        $query = MediaCategory::query()->with('childrenRecursive');
 
         if ($request->filled('type')) {
             $query->byType($request->input('type'));
