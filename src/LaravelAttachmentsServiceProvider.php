@@ -2,8 +2,8 @@
 
 namespace Dcodegroup\LaravelAttachments;
 
-use Dcodegroup\LaravelAttachments\Http\Controllers\Annotations\DeleteAnnotationController;
-use Dcodegroup\LaravelAttachments\Http\Controllers\Annotations\StoreAnnotationController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Annotations\DeleteController as AnnotationsDeleteController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Annotations\StoreController as AnnotationsStoreController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Categories\CategoriesController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Categories\OptionsController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\AttachController;
@@ -65,8 +65,8 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
             string $prefix = 'media',
             string $name = 'media',
         ) {
-            Route::post("$prefix/{media}/annotations", StoreAnnotationController::class)->name("$name.annotations.store");
-            Route::delete("$prefix/{media}/annotations/{annotation}", DeleteAnnotationController::class)->name("$name.annotations.delete");
+            Route::post("$prefix/{media}/annotations", AnnotationsStoreController::class)->name("$name.annotations.store");
+            Route::delete("$prefix/{media}/annotations/{annotation}", AnnotationsDeleteController::class)->name("$name.annotations.delete");
         });
 
         Route::macro('attachmentCategories', function (
@@ -109,7 +109,7 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
 
             if (! Schema::hasTable('annotations')) {
                 $this->publishes([
-                    __DIR__.'/../database/migrations/create_annotations_table.stub.php' => $this->app->databasePath('migrations/'.$timestamp.'_create_annotations_table.php'),
+                    __DIR__.'/../database/migrations/create_media_annotations_table.stub.php' => $this->app->databasePath('migrations/'.$timestamp.'_create_annotations_table.php'),
                 ], 'laravel-attachments-migrations');
             }
         }

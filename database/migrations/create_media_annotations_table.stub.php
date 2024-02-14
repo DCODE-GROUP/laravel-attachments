@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('annotations', function (Blueprint $table) {
+        Schema::create('media_annotations', function (Blueprint $table) {
             $table->id();
             $table->text('content')->nullable();
             $table->foreignIdFor(Media::class);
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annotations');
+        Schema::dropIfExists('media_annotations');
     }
 };

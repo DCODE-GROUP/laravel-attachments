@@ -7,7 +7,7 @@ use Dcodegroup\LaravelAttachments\Models\Media;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
-class StoreAnnotationController
+class StoreController
 {
     use AuthorizesRequests;
 

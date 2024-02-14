@@ -2,16 +2,16 @@
 
 namespace Dcodegroup\LaravelAttachments\Http\Controllers\Annotations;
 
-use Dcodegroup\LaravelAttachments\Models\Annotation;
+use Dcodegroup\LaravelAttachments\Models\MediaAnnotation;
 use Dcodegroup\LaravelAttachments\Models\Media;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
-class DeleteAnnotationController
+class DeleteController
 {
     use AuthorizesRequests;
 
-    public function __invoke(Media $media, Annotation $annotation): JsonResponse
+    public function __invoke(Media $media, MediaAnnotation $annotation): JsonResponse
     {
         $this->authorize('delete', $media);
 

@@ -75,7 +75,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function annotations(): HasMany
     {
-        return $this->hasMany(Annotation::class);
+        return $this->hasMany(MediaAnnotation::class);
     }
 
     public function children(): HasMany
