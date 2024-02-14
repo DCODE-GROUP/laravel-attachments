@@ -38,7 +38,6 @@ class ExistingRequest extends FormRequest
                 'integer',
                 new ModelExists($this->query->get('modelClass', ''), 'id'),
             ],
-
         ];
     }
 }

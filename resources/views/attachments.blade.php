@@ -2,7 +2,7 @@
         :model="{{ $model->toJson() }}"
         model-class="{{ get_class($model) }}"
         upload-endpoint="{{ $uploadEndpoint ?? route(config('attachments.route_name_prefix').'.media.upload') }}"
-        model-existing-endpoint="{{ $existingEndpoint ?? route(config('attachments.route_name_prefix').'.media.existing', ['modelClass' => get_class($model), 'modelId' => $model->id]) }}"
+        model-existing-endpoint="{{ $existingEndpoint ?? route(config('attachments.route_name_prefix').'.media.existing', ['modelClass' => get_class($model), 'modelId' => $model->id, 'category_id' => $existingCategoryId ?? null]) }}"
         category-options-endpoint="{{ $categoryOptionEndpoint ?? route(config('attachments.route_name_prefix').'.categories.options', [
         'type' => \Dcodegroup\LaravelAttachments\Models\MediaCategory::TYPE_ATTACHMENT
     ]) }}"
