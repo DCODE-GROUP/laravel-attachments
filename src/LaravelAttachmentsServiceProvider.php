@@ -94,22 +94,21 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
     protected function setUpMigrations()
     {
         if ($this->app->environment('local')) {
-            $timestamp = date('Y_m_d_His', time());
             if (! Schema::hasTable('media')) {
                 $this->publishes([
-                    __DIR__.'/../database/migrations/create_media_table.stub.php' => $this->app->databasePath('migrations/'.$timestamp.'_create_media_table.php'),
+                    __DIR__.'/../database/migrations/create_media_table.stub.php' => $this->app->databasePath('migrations/'.date('Y_m_d_His', time()).'_create_media_table.php'),
                 ], 'laravel-attachments-migrations');
             }
 
             if (! Schema::hasTable('media_categories')) {
                 $this->publishes([
-                    __DIR__.'/../database/migrations/create_media_categories_table.stub.php' => $this->app->databasePath('migrations/'.$timestamp.'_create_media_categories_table.php'),
+                    __DIR__.'/../database/migrations/create_media_categories_table.stub.php' => $this->app->databasePath('migrations/'.date('Y_m_d_His', time()).'_create_media_categories_table.php'),
                 ], 'laravel-attachments-migrations');
             }
 
             if (! Schema::hasTable('media_annotations')) {
                 $this->publishes([
-                    __DIR__.'/../database/migrations/create_media_annotations_table.stub.php' => $this->app->databasePath('migrations/'.$timestamp.'_create_annotations_table.php'),
+                    __DIR__.'/../database/migrations/create_media_annotations_table.stub.php' => $this->app->databasePath('migrations/'.date('Y_m_d_His', time()).'_create_annotations_table.php'),
                 ], 'laravel-attachments-migrations');
             }
         }
