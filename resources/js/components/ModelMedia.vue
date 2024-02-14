@@ -25,6 +25,7 @@
         :allow-uploading="permitUpload"
         :compact="compact"
         :allow-editing="permitEdit"
+        :display-category="displayCategory"
         @media-uploaded="appendToMedia"
         @media-deleted="destroy"
       />
@@ -127,6 +128,10 @@ export default {
     media: {
       type: Array,
       required: true,
+    },
+    displayCategory: {
+      type: Boolean,
+      default: true,
     },
     // categoriesEndpoint: {
     //   type: String,

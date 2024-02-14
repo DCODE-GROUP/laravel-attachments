@@ -1,6 +1,6 @@
 <template>
   <div class="attachments mb-8 grid grid-cols-4 gap-4 border-b border-gray-300 pb-8" :class="displayStyle">
-    <menu v-if="categories.length">
+    <menu v-if="categories.length && !hideCategoryExplorer">
       <button class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200" @click="reset">
         <folder-icon class="mr-2 w-6" />
         {{ $t("media.words.home") }}
@@ -181,9 +181,21 @@ export default {
       type: String,
       required: false,
     },
+    hideCategoryExplorer: {
+      type: Boolean,
+      default: false,
+    },
     compact: {
       type: Boolean,
       default: false,
+    },
+    showMinimalUpload: {
+      type: Boolean,
+      default: false,
+    },
+    displayCategory: {
+      type: Boolean,
+      default: true,
     },
   },
   data: function () {

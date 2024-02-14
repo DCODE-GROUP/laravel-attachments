@@ -5,6 +5,9 @@
         <th colspan="2">
           {{ $t("media.table.headings.details") }}
         </th>
+        <th v-if="displayCategory">
+          {{ $t("media.table.headings.category") }}
+        </th>
         <th>
           {{ $t("media.table.headings.title") }}
         </th>
@@ -193,6 +196,10 @@ export default {
     compact: {
       type: Boolean,
       default: false,
+    },
+    displayCategory: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {
