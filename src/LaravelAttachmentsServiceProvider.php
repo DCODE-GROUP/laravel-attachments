@@ -107,7 +107,7 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
                 ], 'laravel-attachments-migrations');
             }
 
-            if (! Schema::hasTable('annotations')) {
+            if (! Schema::hasTable('media_annotations')) {
                 $this->publishes([
                     __DIR__.'/../database/migrations/create_media_annotations_table.stub.php' => $this->app->databasePath('migrations/'.$timestamp.'_create_annotations_table.php'),
                 ], 'laravel-attachments-migrations');
