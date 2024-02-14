@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MediaAnnotation extends Model
 {
-    use HasFactory;
-
     /**
      * The attributes that aren't mass assignable.
      *
