@@ -27,6 +27,7 @@ class UploadController
         $file = $request->file('file');
         $modelClass = $request->input('modelClass');
         $modelId = $request->input('modelId');
+        $categoryId = $request->input('category_id');
         $model = $modelClass::findOrFail($modelId);
         $type = $file->getMimeType() ? Str::before($file->getMimeType(), '/') : 'default';
 
