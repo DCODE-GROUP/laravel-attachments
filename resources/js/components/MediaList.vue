@@ -71,6 +71,13 @@
               <button v-if="allowEditing" class="button -hollow sml" @click="fireEditEvent(item)">
                 <pencil-icon class="h-6 w-6" />
               </button>
+              <a :href="item.url"
+                 target="_blank"
+                 v-if="showDownload"
+                 class="button -hollow sml"
+                 :title="item.custom_properties.original_filename">
+                <arrow-down-icon/>
+              </a>
               <button
                 v-if="allowDeleting"
                 class="button -hollow sml"
@@ -121,7 +128,7 @@
 </template>
 
 <script>
-import { PencilIcon, TrashIcon, CloudDownloadIcon } from "@heroicons/vue/solid";
+import { PencilIcon, TrashIcon, ArrowDownIcon } from "@heroicons/vue/solid";
 import bytes from "bytes";
 import Upload from "./Upload.vue";
 import MediaImage from "./MediaImage.vue";
@@ -146,7 +153,7 @@ export default {
     Icon,
     PencilIcon,
     TrashIcon,
-    CloudDownloadIcon,
+    ArrowDownIcon,
   },
   props: {
     media: {
