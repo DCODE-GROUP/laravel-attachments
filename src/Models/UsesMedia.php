@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-abstract class UsesMedia extends Model implements HasMedia, HasMediaUser
+abstract class UsesMedia extends Model implements HasMedia
 {
     use InteractsWithMedia;
 

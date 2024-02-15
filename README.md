@@ -99,6 +99,23 @@ Then add to `AuthServiceProvider`
 ```
 
 
+## User model
+
+Add the following contract to the `User` model.
+
+```php  
+
+use Dcodegroup\LaravelAttachments\Contracts\HasMediaUser;
+
+class User extends Authenticatable implements HasMediaUser
+{
+...
+
+public function getMediaUserName(): string
+{
+    return $this->name;
+}
+```
 
 ## Usage
 

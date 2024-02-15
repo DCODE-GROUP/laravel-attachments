@@ -35,6 +35,7 @@ class UploadController
             ->withCustomProperties([
                 'original_filename' => $file->getClientOriginalName(),
                 'encoding_format' => $file->extension(),
+                'uploaded_by' => $request->user()->getMediaUserName(),
             ])
             ->toMediaCollection($type);
 
