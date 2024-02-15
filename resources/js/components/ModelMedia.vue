@@ -1,5 +1,5 @@
 <template>
-  <aside class="col-span-3">
+  <aside class="col-span-12">
     <template v-if="displayStyle === 'list'">
       <header class="mb-4">
         <h2>{{ headingText ? headingText : $t("media.words.title") }}</h2>
