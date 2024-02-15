@@ -24,5 +24,8 @@
         @isset($preSelectedCategoryId)
             pre-selected-category-id="{{ $preSelectedCategoryId }}"
         @endisset
+        @isset($headingText)
+            heading-text="{{ $headingText }}"
+        @endisset
         >
     </attachments>

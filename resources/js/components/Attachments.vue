@@ -76,6 +76,7 @@
       :permit-edit="permitEdit"
       :show-only="showOnly"
       :current-category="currentCategory"
+      :heading-text="headingText"
       :media="media"
       :class="{ 'no-cats': categories.length === 0 }"
     />
@@ -92,6 +93,7 @@
       :permit-edit="permitEdit"
       :show-only="showOnly"
       :current-category="currentCategory"
+      :heading-text="headingText"
       :media="media"
       :class="{ 'no-cats': categories.length === 0 }"
     />
