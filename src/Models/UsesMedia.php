@@ -2,7 +2,6 @@
 
 namespace Dcodegroup\LaravelAttachments\Models;
 
-use Dcodegroup\LaravelAttachments\Contracts\HasMediaUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\HasMedia;
