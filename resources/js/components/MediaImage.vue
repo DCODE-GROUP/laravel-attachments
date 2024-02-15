@@ -12,7 +12,7 @@
 
 <script>
 import { RefreshIcon } from "@heroicons/vue/solid";
-import MediaElement from "../mixins/MediaElement";
+import MediaElement from "../mixins/MediaElement.js";
 
 export default {
   name: "MediaImage",

@@ -83,6 +83,7 @@
       :show-file-size="showFileSize"
       :show-uploaded-by="showUploadedBy"
       :show-created-at="showCreatedAt"
+      :show-download="showDownload"
       :class="{ 'no-cats': categories.length === 0 }"
     />
     <model-media
@@ -105,6 +106,7 @@
       :show-file-size="showFileSize"
       :show-uploaded-by="showUploadedBy"
       :show-created-at="showCreatedAt"
+      :show-download="showDownload"
       :class="{ 'no-cats': categories.length === 0 }"
     />
   </div>
@@ -214,6 +216,10 @@ export default {
       default: true,
     },
     showCreatedAt: {
+      type: Boolean,
+      default: true,
+    },
+    showDownload: {
       type: Boolean,
       default: true,
     },

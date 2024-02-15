@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@heroicons/vue": "^2.1.1",
+    "bytes": "^3.1.2",
+    "form-backend-validation": "^2.4.0",
+    "vue-image-markup": "^3.2.0",
+    "vue-upload-component": "^2.8.23"
+  }
+}

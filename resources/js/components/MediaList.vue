@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import { PencilIcon, TrashIcon } from "@heroicons/vue/solid";
+import { PencilIcon, TrashIcon, CloudDownloadIcon } from "@heroicons/vue/solid";
 import bytes from "bytes";
 import Upload from "./Upload.vue";
 import MediaImage from "./MediaImage.vue";
@@ -146,6 +146,7 @@ export default {
     Icon,
     PencilIcon,
     TrashIcon,
+    CloudDownloadIcon,
   },
   props: {
     media: {
@@ -216,6 +217,10 @@ export default {
       default: true,
     },
     showCreatedAt: {
+      type: Boolean,
+      default: true,
+    },
+    showDownload: {
       type: Boolean,
       default: true,
     },

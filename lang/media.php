@@ -18,6 +18,7 @@ return [
             'category' => 'Category',
             'created_at' => 'Uploaded',
             'details' => 'File Details',
+            'download' => 'Download',
             'size' => 'Size',
             'title' => 'Title',
             'uploaded_by' => 'Uploaded By',

@@ -28,6 +28,7 @@
         :show-file-size="showFileSize"
         :show-uploaded-by="showUploadedBy"
         :show-created-at="showCreatedAt"
+        :show-download="showDownload"
         :allow-editing="permitEdit"
         :display-category="displayCategory"
         @media-uploaded="appendToMedia"
@@ -144,6 +145,10 @@ export default {
     currentCategory: {
       type: [String, Number],
       required: true,
+    },
+    showDownload: {
+      type: Boolean,
+      default: true,
     },
     media: {
       type: Array,

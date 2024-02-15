@@ -42,5 +42,8 @@
         @isset($showCreatedAt)
             :show-created-at="{{ $showCreatedAt }}"
         @endisset
+        @isset($showDownload)
+            :show-download="{{ $showDownload }}"
+        @endisset
         >
     </attachments>
