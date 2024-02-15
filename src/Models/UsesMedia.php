@@ -2,12 +2,13 @@
 
 namespace Dcodegroup\LaravelAttachments\Models;
 
+use Dcodegroup\LaravelAttachments\Contracts\HasMediaUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-abstract class UsesMedia extends Model implements HasMedia
+abstract class UsesMedia extends Model implements HasMedia, HasMediaUser
 {
     use InteractsWithMedia;
 
