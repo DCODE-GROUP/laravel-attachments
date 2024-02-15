@@ -27,7 +27,6 @@ class UploadController
         $file = $request->file('file');
         $modelClass = $request->input('modelClass');
         $modelId = $request->input('modelId');
-        $categoryId = $request->input('category_id');
         $model = $modelClass::findOrFail($modelId);
         $type = $file->getMimeType() ? Str::before($file->getMimeType(), '/') : 'default';
 
@@ -38,6 +37,10 @@ class UploadController
                 'encoding_format' => $file->extension(),
             ])
             ->toMediaCollection($type);
+
+        if ($request->filled('category_id')) {
+            $media->setCategory($request->input('category_id'));
+        }
 
         return response()->json([
             'message' => __('attachments::media.status.upload_success'),

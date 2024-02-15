@@ -172,4 +172,11 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
         return $hash.$extension;
     }
+
+    public function setCategory(int $categoryId): void
+    {
+        $this->update([
+            'category_id' => $categoryId,
+        ]);
+    }
 }
