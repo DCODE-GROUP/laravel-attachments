@@ -20,7 +20,7 @@
               v-for="category in categories"
               :key="category.id"
               class="mb-1"
-              :class="{ open: currentCategory.id === category.id && activeFolder === 'model' }"
+              :class="{ open: currentCategory === category.id && activeFolder === 'model' }"
             >
               <button
                 class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200"
@@ -28,7 +28,7 @@
               >
                 <folder-open-icon
                   class="mr-2 w-6"
-                  v-if="currentCategory.id === category.id && activeFolder === 'model'"
+                  v-if="currentCategory === category.id && activeFolder === 'model'"
                 />
                 <folder-icon class="mr-2 w-6" v-else />
                 {{ category.name }}
@@ -46,12 +46,12 @@
             <li
               v-for="category in categories"
               :key="category.id"
-              :class="{ open: currentCategory.id === category.id && activeFolder === 'parent' }"
+              :class="{ open: currentCategory === category.id && activeFolder === 'parent' }"
             >
               <button class="flex items-center" @click="refineCategory(category, 'parent')">
                 <folder-open-icon
                   class="mr-2 w-6"
-                  v-if="currentCategory.id === category.id && activeFolder === 'parent'"
+                  v-if="currentCategory === category.id && activeFolder === 'parent'"
                 />
                 <folder-icon class="mr-2 w-6" v-else />
                 {{ category.name }}
@@ -197,6 +197,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    preSelectedCategoryId: {
+      type: [String, Number ],
+      default: null,
+    },
   },
   data: function () {
     return {
@@ -205,10 +209,7 @@ export default {
       media: [],
       categories: [],
       parentCategories: [],
-      currentCategory: {
-        id: null,
-        parent_id: null,
-      },
+      currentCategory: this.preSelectedCategoryId,
     };
   },
   mounted() {
@@ -232,10 +233,7 @@ export default {
     },
     reset() {
       this.parentCategories = [];
-      this.currentCategory = {
-        id: null,
-        parent_id: null,
-      };
+      this.currentCategory = null;
       this.refineCategory();
     },
     updateParents(category) {
@@ -252,7 +250,7 @@ export default {
     },
     refineCategory(category = { id: null, parent_id: null }, folder = "model") {
       this.activeFolder = folder;
-      this.currentCategory = category;
+      this.currentCategory = category.id;
       this.updateParents(category);
       this.getExisting();
       axios
@@ -270,7 +268,7 @@ export default {
     },
     getExisting() {
       let params = {
-        category_id: this.currentCategory.id,
+        category_id: this.currentCategory,
       };
       if (this.activeFolder === "model") {
         params = {

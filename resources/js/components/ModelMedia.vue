@@ -15,7 +15,7 @@
       <media-list
         :media="media"
         :category-options="fullCategoryOptions"
-        :category-id="currentCategory.id"
+        :category-id="currentCategory"
         :model="model"
         :model-class="modelClass"
         :parent-model="parentModel"
@@ -122,7 +122,7 @@ export default {
       default: false,
     },
     currentCategory: {
-      type: Object,
+      type: [String, Number],
       required: true,
     },
     media: {
@@ -142,83 +142,10 @@ export default {
   data: function () {
     return {
       files: [],
-      // media: [],
-
-      // categories: [],
-      // parentCategories: [],
-      // currentCategory: {
-      //   id: null,
-      //   parent_id: null,
-      // },
     };
   },
 
-  // mounted() {
-  //   // this.getExisting();
-  //   this.refineCategory();
-  // },
-
   methods: {
-    // reset() {
-    //   this.parentCategories = [];
-    //   this.currentCategory = {
-    //     id: null,
-    //     parent_id: null,
-    //   };
-
-    //   this.refineCategory();
-    // },
-
-    // updateParents(category) {
-    //   if (this.parentCategories.length > 0) {
-    //     let lastItem = this.parentCategories[this.parentCategories.length - 1];
-    //     // if last item in the array has the same parent then remove it
-    //     if (lastItem.parent_id === category.parent_id) {
-    //       this.parentCategories.pop();
-    //     }
-    //   }
-    //   if (this.parentCategories.indexOf(category) && category.id !== null) {
-    //     this.parentCategories.push(category);
-    //   }
-    // },
-
-    // refineCategory(category = {id: null, parent_id: null}) {
-    //   this.currentCategory = category;
-
-    //   this.updateParents(category);
-
-    //   this.getExisting();
-
-    //   axios
-    //     .get(this.categoriesEndpoint, {
-    //       params: {
-    //         parent_id: category.id,
-    //       },
-    //     })
-    //     .then(({data}) => {
-    //       if (data.length) {
-    //         this.categories = data;
-    //       }
-    //     })
-    //     .catch(console.error);
-    // },
-
-    // getExisting() {
-    //   axios
-    //     .get(this.existingEndpoint, {
-    //       params: {
-    //         category_id: this.currentCategory.id,
-    //       },
-    //     })
-    //     .then(({data}) => {
-    //       this.media = [];
-    //       if (data.length) {
-    //         this.media = data;
-    //       }
-    //     })
-    //     .catch(console.error);
-    // },
-
     appendToMedia(item) {
       // console.log("media", item);
       this.media.push(item);
