@@ -24,8 +24,6 @@ class UploadController
             ], Response::HTTP_EXPECTATION_FAILED);
         }
 
-        ld($request->all());
-
         $file = $request->file('file');
         $modelClass = $request->input('modelClass');
         $modelId = $request->input('modelId');

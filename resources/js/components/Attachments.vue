@@ -200,7 +200,7 @@ export default {
       default: true,
     },
     preSelectedCategoryId: {
-      type: [String, Number ],
+      type: Number,
       default: null,
     },
   },

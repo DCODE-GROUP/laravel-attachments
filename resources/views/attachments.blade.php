@@ -22,7 +22,7 @@
             :show-only="true"
         @endisset
         @isset($preSelectedCategoryId)
-            pre-selected-category-id="{{ $preSelectedCategoryId }}"
+            :pre-selected-category-id="{{ $preSelectedCategoryId }}"
         @endisset
         @isset($headingText)
             heading-text="{{ $headingText }}"
