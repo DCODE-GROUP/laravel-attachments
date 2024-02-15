@@ -252,7 +252,9 @@ export default {
     },
     refineCategory(category = { id: null, parent_id: null }, folder = "model") {
       this.activeFolder = folder;
-      this.currentCategory = category.id;
+      if (category.id !== null) {
+        this.currentCategory = category.id;
+      }
       this.updateParents(category);
       this.getExisting();
       axios
