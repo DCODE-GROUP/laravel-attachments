@@ -27,5 +27,20 @@
         @isset($headingText)
             heading-text="{{ $headingText }}"
         @endisset
+        @isset($showTitle)
+            :show-title="{{ $showTitle }}"
+        @endisset
+        @isset($showAltText)
+            :show-alt-text="{{ $showAltText }}"
+        @endisset
+        @isset($showFileSize)
+            :show-file-size="{{ $showFileSize }}"
+        @endisset
+        @isset($showUploadedBy)
+            :show-uploaded-by="{{ $showUploadedBy }}"
+        @endisset
+        @isset($showCreatedAt)
+            :show-created-at="{{ $showCreatedAt }}"
+        @endisset
         >
     </attachments>

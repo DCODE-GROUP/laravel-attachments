@@ -78,6 +78,11 @@
       :current-category="currentCategory"
       :heading-text="headingText"
       :media="media"
+      :show-title="showTitle"
+      :show-alt-text="showAltText"
+      :show-file-size="showFileSize"
+      :show-uploaded-by="showUploadedBy"
+      :show-created-at="showCreatedAt"
       :class="{ 'no-cats': categories.length === 0 }"
     />
     <model-media
@@ -95,6 +100,11 @@
       :current-category="currentCategory"
       :heading-text="headingText"
       :media="media"
+      :show-title="showTitle"
+      :show-alt-text="showAltText"
+      :show-file-size="showFileSize"
+      :show-uploaded-by="showUploadedBy"
+      :show-created-at="showCreatedAt"
       :class="{ 'no-cats': categories.length === 0 }"
     />
   </div>
@@ -187,9 +197,25 @@ export default {
       type: Boolean,
       default: false,
     },
-    compact: {
+    showTitle: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    showAltText: {
+      type: Boolean,
+      default: true,
+    },
+    showFileSize: {
+      type: Boolean,
+      default: true,
+    },
+    showUploadedBy: {
+      type: Boolean,
+      default: true,
+    },
+    showCreatedAt: {
+      type: Boolean,
+      default: true,
     },
     showMinimalUpload: {
       type: Boolean,

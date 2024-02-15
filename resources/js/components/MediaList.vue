@@ -8,19 +8,22 @@
         <th v-if="displayCategory">
           {{ $t("media.table.headings.category") }}
         </th>
-        <th>
+        <th v-if="showTitle">
           {{ $t("media.table.headings.title") }}
         </th>
-        <th>
+        <th v-if="showAltText">
             {{ $t("media.table.headings.alt_text") }}
         </th>
         <th v-if="categoryOptions.length && allowUpdatingCategory">
           {{ $t("media.table.headings.category") }}
         </th>
-        <th v-if="!compact">
+        <th v-if="showFileSize">
           {{ $t("media.table.headings.size") }}
         </th>
-        <th v-if="!compact">
+        <th v-if="showUploadedBy">
+          {{ $t("media.table.headings.uploaded_by") }}
+        </th>
+        <th v-if="showCreatedAt">
           {{ $t("media.table.headings.created_at") }}
         </th>
         <th>&nbsp;</th>
@@ -35,13 +38,13 @@
           <td @click="$emit('click', item)">
             {{ item.custom_properties.original_filename }}
           </td>
-          <td>
+          <td v-if="showTitle">
             <title-updater
                 :model="item"
                 :set-endpoint="item.hasOwnProperty('set_title_endpoint') ? item.set_title_endpoint : null"
             ></title-updater>
           </td>
-          <td>
+          <td v-if="showAltText">
             <alt-text-updater
                 :model="item"
                 :set-endpoint="item.hasOwnProperty('set_alt_text_endpoint') ? item.set_alt_text_endpoint : null"
@@ -54,10 +57,13 @@
               :set-endpoint="item.hasOwnProperty('set_category_endpoint') ? item.set_category_endpoint : null"
             />
           </td>
-          <td v-if="!compact">
+          <td v-if="showFileSize">
             {{ formatFileSize(item.size) }}
           </td>
-          <td v-if="!compact">
+          <td v-if="showUploadedBy">
+            {{ item.custom_properties.uploaded_by }}
+          </td>
+          <td v-if="showCreatedAt">
             {{ formatDate(item.created_at) }}
           </td>
           <td class="actions">
@@ -193,9 +199,25 @@ export default {
       type: Boolean,
       default: true,
     },
-    compact: {
+    showTitle: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    showAltText: {
+      type: Boolean,
+      default: true,
+    },
+    showFileSize: {
+      type: Boolean,
+      default: true,
+    },
+    showUploadedBy: {
+      type: Boolean,
+      default: true,
+    },
+    showCreatedAt: {
+      type: Boolean,
+      default: true,
     },
     displayCategory: {
       type: Boolean,

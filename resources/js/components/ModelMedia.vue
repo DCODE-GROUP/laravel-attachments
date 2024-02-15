@@ -23,7 +23,11 @@
         :upload-endpoint="uploadEndpoint"
         :allow-deleting="permitDelete"
         :allow-uploading="permitUpload"
-        :compact="compact"
+        :show-title="showTitle"
+        :show-alt-text="showAltText"
+        :show-file-size="showFileSize"
+        :show-uploaded-by="showUploadedBy"
+        :show-created-at="showCreatedAt"
         :allow-editing="permitEdit"
         :display-category="displayCategory"
         @media-uploaded="appendToMedia"
@@ -117,9 +121,25 @@ export default {
       default: "",
       required: false,
     },
-    compact: {
+    showTitle: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    showAltText: {
+      type: Boolean,
+      default: true,
+    },
+    showFileSize: {
+      type: Boolean,
+      default: true,
+    },
+    showUploadedBy: {
+      type: Boolean,
+      default: true,
+    },
+    showCreatedAt: {
+      type: Boolean,
+      default: true,
     },
     currentCategory: {
       type: [String, Number],
