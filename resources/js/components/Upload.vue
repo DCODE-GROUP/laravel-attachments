@@ -3,7 +3,7 @@
     ref="upload"
     v-model="files"
     name="file"
-    class="jusify-center flex w-full !cursor-pointer items-center rounded border border-dashed border-gray-500 p-4 hover:bg-gray-50"
+    class="justify-center flex w-full !cursor-pointer items-center rounded border border-dashed border-gray-500 p-4 hover:bg-gray-50"
     :post-action="uploadEndpoint"
     :headers="{
       'X-CSRF-TOKEN': $root.csrf_token,
