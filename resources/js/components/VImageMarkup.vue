@@ -210,7 +210,6 @@ export default {
       this.drawMode();
     },
     hideLayer(id) {
-      console.log("reached hideLayer", this.plans[this.selected].annotations[id]);
       this.plans[this.selected].annotations = this.plans[this.selected].annotations.map((annotation) => {
         if (annotation.id === annotationId) {
           annotation.hidden = !annotation.hidden;

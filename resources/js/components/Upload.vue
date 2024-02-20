@@ -175,11 +175,11 @@ export default {
      */
 
     inputFilter: function (newFile, oldFile, prevent) {
-      // Filter system files or hide files
+      // Filters system files or hide files
       if (/(\/|^)(Thumbs\.db|desktop\.ini|\..+)$/.test(newFile.name)) {
         return prevent();
       }
-      // Filter php html js file
+      // Filters php html js file
       if (/\.(php5?|html?|jsx?)$/i.test(newFile.name)) {
         return prevent();
       }

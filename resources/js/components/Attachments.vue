@@ -330,7 +330,6 @@ export default {
         .then(({ data }) => {
           this.media = [];
           if (data.length) {
-            console.log("getExisting media: ", { data });
             this.media = data;
           }
         })
