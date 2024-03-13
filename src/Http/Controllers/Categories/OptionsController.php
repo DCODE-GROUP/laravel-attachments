@@ -19,9 +19,15 @@ class OptionsController
             $query->byType($request->input('type'));
         }
 
+        $orderBy = 'name';
+
+        if ($request->filled('order')) {
+            $orderBy = $request->input('order');
+        }
+
         $results = [];
 
-        $this->getCategories($query->whereNull('parent_id')->orderBy('name')->get(), $results);
+        $this->getCategories($query->whereNull('parent_id')->orderBy($orderBy)->get(), $results);
 
         return $results;
     }
