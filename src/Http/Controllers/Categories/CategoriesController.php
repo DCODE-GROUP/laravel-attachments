@@ -19,12 +19,18 @@ class CategoriesController
             $query->byType($request->input('type'));
         }
 
+        $orderBy = 'name';
+
+        if ($request->filled('order')) {
+            $orderBy = $request->input('order');
+        }
+
         if ($request->filled('parent_id')) {
             $query->forParentId($request->input('parent_id'));
         } else {
             $query->whereNull('parent_id');
         }
 
-        return $query->orderBy('name')->get();
+        return $query->orderBy($orderBy)->get();
     }
 }
