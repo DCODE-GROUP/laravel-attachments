@@ -104,6 +104,58 @@ Then add to `AuthServiceProvider`
 
 ```
 
+Example policy might be
+
+```php
+<?php
+
+namespace App\Policies;
+
+use App\Models\User;
+use Dcodegroup\LaravelAttachments\Models\Media;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class MediaPolicy
+{
+    use HandlesAuthorization;
+
+    public function viewAny(User $user): bool
+    {
+        return $this->internalOnly($user);
+    }
+
+    public function view(User $user, Media $media): bool
+    {
+        return $this->internalOnly($user);
+    }
+
+    public function create(User $user): bool
+    {
+        return $this->internalOnly($user);
+    }
+
+    public function update(User $user, Media $media): bool
+    {
+        return $this->internalOnly($user);
+    }
+
+    public function delete(User $user, Media $media): bool
+    {
+        return $this->internalOnly($user);
+    }
+
+    public function restore(User $user, Media $media): bool
+    {
+        return $this->internalOnly($user);
+    }
+
+    public function forceDelete(User $user, Media $media): bool
+    {
+        return $this->internalOnly($user);
+    }
+}
+```
+
 
 ## User model
 
