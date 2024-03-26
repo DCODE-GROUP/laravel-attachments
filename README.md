@@ -35,7 +35,7 @@ Then add the following to your `RouteServiceProvider`
     Route::middleware([
         'web',
         'auth',
-    ])->as(config('attachments.route_name_prefix'))->prefix('attachments')->group(base_path('routes/laravel_attachments.php'));
+    ])->as(config('attachments.route_name_prefix').'.')->prefix('attachments')->group(base_path('routes/laravel_attachments.php'));
 ```
 
 ## Frontend
