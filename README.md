@@ -9,7 +9,7 @@ composer require dcodegroup/laravel-attachments
 Then run
 
 ```bash
-php artisan vendor:publish --provider="DcodeGroup\LaravelAttachments\Providers\AttachmentsServiceProvider"
+php artisan vendor:publish --provider="Dcodegroup\LaravelAttachments\LaravelAttachmentsServiceProvider"
 ```
 
 
