@@ -1,5 +1,6 @@
 {
     "name": "dcodegroup/laravel-attachments",
+    "description": "Allow adding attachments to any document",
     "license": "MIT",
     "type": "library",
     "keywords": [
