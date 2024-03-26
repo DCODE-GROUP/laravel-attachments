@@ -12,7 +12,6 @@ Then run
 php artisan vendor:publish --provider="Dcodegroup\LaravelAttachments\LaravelAttachmentsServiceProvider"
 ```
 
-
 ## Routes 
 
 Add the Routes to the file you need.
