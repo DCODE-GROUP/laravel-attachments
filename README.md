@@ -83,6 +83,11 @@ Then change the media model used to
     'media_model' => \Dcodegroup\LaravelAttachments\Models\Media::class,
 ```
 
+You probably want to change the disk for stored files from `media-library` also.
+
+```php
+    'disk_name' => env('MEDIA_DISK', 's3'),
+```
 
 ## Security
 
