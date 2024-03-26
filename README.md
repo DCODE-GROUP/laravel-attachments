@@ -74,7 +74,7 @@ return [
 Ensure the publish the config file from the Spatie Media Library.
 
 ```bash
-php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider" --tag="medialibrary-config"
 ```
 
 Then change the media model used to 
