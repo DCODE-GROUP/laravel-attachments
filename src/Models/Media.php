@@ -22,9 +22,9 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
     ];
 
     /**
-     * The accessors to append to the model's array form.
+     * The attributes that should be appended to model arrays.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $appends = [
         'add_annotation_endpoint',

@@ -7,17 +7,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MediaAnnotation extends Model
 {
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var string[]|bool
-     */
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'content',
+        'media_id',
+        'hidden',
+    ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'hidden' => 'bool',

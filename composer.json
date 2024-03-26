@@ -1,19 +1,12 @@
 {
     "name": "dcodegroup/laravel-attachments",
+    "license": "MIT",
     "type": "library",
     "keywords": [
         "laravel",
         "attachments",
         "dcode"
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Dcodegroup\\LaravelAttachments\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Robert Rimoczi",
@@ -31,17 +24,32 @@
         }
     ],
     "require": {
-        "php": "^8.2|^8.3",
+        "php": "^8.2||^8.3",
         "ext-imagick": "*",
-        "laravel/framework": "^9.0|^10.0|^11.0",
+        "laravel/framework": "^9.0 || ^10.0 || ^11.0",
         "mvanduijker/laravel-model-exists-rule": "^3.0",
         "spatie/laravel-medialibrary": "^11.0",
         "spatie/pdf-to-image": "^2.2"
     },
-    "scripts": {
-        "psalm": "vendor/bin/psalm"
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.42",
+        "larastan/larastan": "^2.9",
+        "laravel/pint": "^1.13",
+        "orchestra/testbench": "^8.21",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.3"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Dcodegroup\\LaravelAttachments\\": "src/"
+        }
     },
     "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true
+        },
         "sort-packages": true
     },
     "extra": {
@@ -51,8 +59,8 @@
             ]
         }
     },
-    "require-dev": {
-        "larastan/larastan": "^2.9",
-        "laravel/pint": "^1.13"
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint"
     }
 }
