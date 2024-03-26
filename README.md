@@ -54,6 +54,15 @@ import attachmentPlugin from "../../vendor/dcodegroup/laravel-attachments/resour
 app.use(attachmentPlugin)
 ```
 
+Ensure to install these npm packages
+
+```bash
+npm i @heroicons/vue bytes form-backend-validation vue-image-markup vue-upload-component  
+```
+
+## config
+
+
 Configuration file contains
 
 ```php
