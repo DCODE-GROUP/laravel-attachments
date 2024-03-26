@@ -14,12 +14,28 @@ php artisan vendor:publish --provider="Dcodegroup\LaravelAttachments\LaravelAtta
 
 ## Routes 
 
-Add the Routes to the file you need.
+Add the Routes to the file you need such as `laravel_attachments.php`
 
 ```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+
 Route::attachments();
 Route::attachmentAnnotations();
 Route::attachmentCategories();
+```
+
+Then add the following to your `RouteServiceProvider`
+
+```php
+    /**
+     * Attachments
+     */
+    Route::middleware([
+        'web',
+        'auth',
+    ])->as(config('attachments.route_name_prefix'))->prefix('attachments')->group(base_path('routes/laravel_attachments.php'));
 ```
 
 ## Frontend
