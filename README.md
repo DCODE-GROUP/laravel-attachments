@@ -30,6 +30,8 @@ Add the following file to to your css file.
  @import "../../vendor/dcodegroup/laravel-attachments/resources/postcss/attachments.pcss";
 ```
 
+Add the below to the `app.js` file.
+
 ```js
 import attachmentPlugin from "../../vendor/dcodegroup/laravel-attachments/resources/js/plugin"
 
