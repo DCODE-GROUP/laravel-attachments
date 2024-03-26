@@ -12,7 +12,7 @@
           {{ $t("media.table.headings.title") }}
         </th>
         <th v-if="showAltText">
-            {{ $t("media.table.headings.alt_text") }}
+          {{ $t("media.table.headings.alt_text") }}
         </th>
         <th v-if="categoryOptions.length && allowUpdatingCategory">
           {{ $t("media.table.headings.category") }}
@@ -33,28 +33,45 @@
       <template v-for="(item, index) in media">
         <tr v-if="item" :key="index">
           <td>
-            <component :is="getComponent(item)" :media="item" display-style="list" class="square-thumb" />
+            <component
+              :is="getComponent(item)"
+              :media="item"
+              display-style="list"
+              class="square-thumb"
+            />
           </td>
           <td @click="$emit('click', item)">
             {{ item.custom_properties.original_filename }}
           </td>
           <td v-if="showTitle">
             <title-updater
-                :model="item"
-                :set-endpoint="item.hasOwnProperty('set_title_endpoint') ? item.set_title_endpoint : null"
+              :model="item"
+              :set-endpoint="
+                item.hasOwnProperty('set_title_endpoint')
+                  ? item.set_title_endpoint
+                  : null
+              "
             ></title-updater>
           </td>
           <td v-if="showAltText">
             <alt-text-updater
-                :model="item"
-                :set-endpoint="item.hasOwnProperty('set_alt_text_endpoint') ? item.set_alt_text_endpoint : null"
+              :model="item"
+              :set-endpoint="
+                item.hasOwnProperty('set_alt_text_endpoint')
+                  ? item.set_alt_text_endpoint
+                  : null
+              "
             ></alt-text-updater>
           </td>
           <td v-if="categoryOptions.length && allowUpdatingCategory">
             <inline-category-updater
               :options="categoryOptions"
               :model="item"
-              :set-endpoint="item.hasOwnProperty('set_category_endpoint') ? item.set_category_endpoint : null"
+              :set-endpoint="
+                item.hasOwnProperty('set_category_endpoint')
+                  ? item.set_category_endpoint
+                  : null
+              "
             />
           </td>
           <td v-if="showFileSize">
@@ -68,15 +85,21 @@
           </td>
           <td class="actions">
             <menu>
-              <button v-if="allowEditing" class="button -hollow sml" @click="fireEditEvent(item)">
+              <button
+                v-if="allowEditing"
+                class="button -hollow sml"
+                @click="fireEditEvent(item)"
+              >
                 <pencil-icon class="h-6 w-6" />
               </button>
-              <a :href="item.url"
-                 target="_blank"
-                 v-if="showDownload"
-                 class="button -hollow sml"
-                 :title="item.custom_properties.original_filename">
-                <arrow-down-icon/>
+              <a
+                :href="item.url"
+                target="_blank"
+                v-if="showDownload"
+                class="button -hollow sml"
+                :title="item.custom_properties.original_filename"
+              >
+                <arrow-down-icon />
               </a>
               <button
                 v-if="allowDeleting"
@@ -268,7 +291,10 @@ export default {
       return "default";
     },
     isApplication(file) {
-      return _.startsWith(file.mime_type, "application") || _.startsWith(file.mime_type, "text");
+      return (
+        _.startsWith(file.mime_type, "application") ||
+        _.startsWith(file.mime_type, "text")
+      );
     },
     fireUploadedEvent(item) {
       this.$emit("media-uploaded", item);

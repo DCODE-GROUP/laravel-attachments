@@ -190,7 +190,12 @@ export default {
       // if (URL && URL.createObjectURL) {
       //     newFile.blob = URL.createObjectURL(newFile.file);
       // }
-      if (newFile && newFile.error === "" && newFile.file && (!oldFile || newFile.file !== oldFile.file)) {
+      if (
+        newFile &&
+        newFile.error === "" &&
+        newFile.file &&
+        (!oldFile || newFile.file !== oldFile.file)
+      ) {
         // Create a blob field
         newFile.blob = "";
         const URL = window.URL || window.webkitURL;
@@ -221,4 +226,3 @@ export default {
   },
 };
 </script>
-

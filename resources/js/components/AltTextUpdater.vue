@@ -9,7 +9,7 @@
         <x-icon class="h-4 w-4" />
       </button>
     </header>
-    <input type="text" v-model="form.alt_text" @blur="update">
+    <input type="text" v-model="form.alt_text" @blur="update" />
   </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       form: new Form({
-        alt_text: this.model.alt_text
+        alt_text: this.model.alt_text,
       }),
       showAlert: false,
       alertText: "",
@@ -55,18 +55,22 @@ export default {
   methods: {
     update() {
       this.form
-          .patch(this.setEndpoint ? this.setEndpoint : `/frontend/admin/media/alttext/${this.model.id}`)
-          .then((data) => {
-            this.alertText = data.message;
-            this.form.alt_text = data.alt_text;
-            this.showAlert = true;
-            setTimeout(() => {
-              this.showAlert = false;
-            }, 1500);
-          })
-          .catch((errors) => {
-            console.error(errors);
-          });
+        .patch(
+          this.setEndpoint
+            ? this.setEndpoint
+            : `/frontend/admin/media/alttext/${this.model.id}`,
+        )
+        .then((data) => {
+          this.alertText = data.message;
+          this.form.alt_text = data.alt_text;
+          this.showAlert = true;
+          setTimeout(() => {
+            this.showAlert = false;
+          }, 1500);
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
     },
   },
 };

@@ -59,7 +59,11 @@ export default {
   methods: {
     update() {
       this.form
-        .patch(this.setEndpoint ? this.setEndpoint : `/frontend/admin/media/category/${this.model.id}`)
+        .patch(
+          this.setEndpoint
+            ? this.setEndpoint
+            : `/frontend/admin/media/category/${this.model.id}`,
+        )
         .then((data) => {
           this.alertText = data.message;
           this.form.category_id = data.category_id;

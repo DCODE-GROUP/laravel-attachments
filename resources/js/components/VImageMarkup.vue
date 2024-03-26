@@ -25,8 +25,14 @@
             <button class="delete" @click="deleteLayer(annotation.id)">
               <trash-icon class="h-6 w-6" />
             </button>
-            <button class="remove" @click="annotation.hidden = !annotation.hidden">
-              <i class="fal" :class="annotation.hidden ? 'fa-eye-slash' : 'fa-eye'" />
+            <button
+              class="remove"
+              @click="annotation.hidden = !annotation.hidden"
+            >
+              <i
+                class="fal"
+                :class="annotation.hidden ? 'fa-eye-slash' : 'fa-eye'"
+              />
             </button>
           </a>
         </li>
@@ -44,7 +50,12 @@
             :class="{ hide: annotation.hidden }"
           />
         </div>
-        <img ref="planImg" class="plan-image" :src="plans[selected].url" @load="onPlanImgLoaded" />
+        <img
+          ref="planImg"
+          class="plan-image"
+          :src="plans[selected].url"
+          @load="onPlanImgLoaded"
+        />
       </div>
       <Editor
         v-if="loaded"
@@ -58,13 +69,24 @@
       <div>
         <h4>Tools</h4>
         <nav class="menu vertical">
-          <button ref="drawBtn" class="drawBtn" :class="{ active: toolSelected === 'draw' }" @click="drawMode">
+          <button
+            ref="drawBtn"
+            class="drawBtn"
+            :class="{ active: toolSelected === 'draw' }"
+            @click="drawMode"
+          >
             <pencil-icon class="h-6 w-6" />
           </button>
-          <button :class="{ active: toolSelected === 'text' }" @click="textMode">
+          <button
+            :class="{ active: toolSelected === 'text' }"
+            @click="textMode"
+          >
             <adjustments-icon class="h-6 w-6" />
           </button>
-          <button :class="{ active: toolSelected === 'move' }" @click="moveMode">
+          <button
+            :class="{ active: toolSelected === 'move' }"
+            @click="moveMode"
+          >
             <arrows-expand-icon class="h-6 w-6" />
           </button>
           <button :disabled="stroke === 8" @click="increaseStroke">
@@ -74,16 +96,28 @@
             <minus-icon class="h-6 w-6" />
           </button>
           <div class="colour-picker">
-            <input v-model="colourVal" type="color" list="presetColours" @change="updateColour" />
+            <input
+              v-model="colourVal"
+              type="color"
+              list="presetColours"
+              @change="updateColour"
+            />
             <datalist id="presetColours">
               <option v-for="colour in colourOptions" :key="colour">
                 {{ colour }}
               </option>
             </datalist>
-            <div class="stroke-container" :style="{ borderColor: `${colourVal}` }">
+            <div
+              class="stroke-container"
+              :style="{ borderColor: `${colourVal}` }"
+            >
               <div
                 class="stroke"
-                :style="{ width: `${stroke}px`, height: `${stroke}px`, backgroundColor: `${colourVal}` }"
+                :style="{
+                  width: `${stroke}px`,
+                  height: `${stroke}px`,
+                  backgroundColor: `${colourVal}`,
+                }"
               />
             </div>
           </div>
@@ -141,7 +175,14 @@ export default {
       selected: 0,
       toolSelected: null,
       colourVal: "#000000",
-      colourOptions: ["#000000", "#ff0000", "#00ff00", "#0000ff", "#ffee00", "#ff8800"],
+      colourOptions: [
+        "#000000",
+        "#ff0000",
+        "#00ff00",
+        "#0000ff",
+        "#ffee00",
+        "#ff8800",
+      ],
       stroke: 2,
       saving: false,
       planImgHasLoaded: false,
@@ -210,7 +251,9 @@ export default {
       this.drawMode();
     },
     hideLayer(id) {
-      this.plans[this.selected].annotations = this.plans[this.selected].annotations.map((annotation) => {
+      this.plans[this.selected].annotations = this.plans[
+        this.selected
+      ].annotations.map((annotation) => {
         if (annotation.id === annotationId) {
           annotation.hidden = !annotation.hidden;
         }
@@ -219,17 +262,22 @@ export default {
     },
     deleteLayer(annotationId) {
       axios
-        .delete(`/frontend/admin/media/${this.plans[this.selected].id}/annotations/${annotationId}`)
+        .delete(
+          `/frontend/admin/media/${this.plans[this.selected].id}/annotations/${annotationId}`,
+        )
         .then((resp) => {
-          this.plans[this.selected].annotations = this.plans[this.selected].annotations.filter(
-            (plan) => plan.id !== annotationId,
-          );
+          this.plans[this.selected].annotations = this.plans[
+            this.selected
+          ].annotations.filter((plan) => plan.id !== annotationId);
         })
         .catch((err) => console.error(err));
     },
     drawMode() {
       this.toolSelected = "draw";
-      this.$refs.editor.set("freeDrawing", { stroke: this.colourVal, strokeWidth: this.stroke });
+      this.$refs.editor.set("freeDrawing", {
+        stroke: this.colourVal,
+        strokeWidth: this.stroke,
+      });
       this.$refs.drawBtn.focus();
     },
     textMode() {

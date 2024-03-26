@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p class="text-warning">No preview was found for this file type {{ media.mime_type }}</p>
+    <p class="text-warning">
+      No preview was found for this file type {{ media.mime_type }}
+    </p>
     {{ media }}
   </div>
 </template>

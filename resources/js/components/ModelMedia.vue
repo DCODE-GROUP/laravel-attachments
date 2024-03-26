@@ -211,7 +211,10 @@ export default {
         return "media-video";
       }
 
-      if (_.startsWith(file.mime_type, "application") || _.startsWith(file.mime_type, "text")) {
+      if (
+        _.startsWith(file.mime_type, "application") ||
+        _.startsWith(file.mime_type, "text")
+      ) {
         return "media-application";
       }
 

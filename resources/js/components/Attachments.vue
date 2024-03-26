@@ -1,7 +1,13 @@
 <template>
-  <div class="attachments mb-8 grid grid-cols-4 gap-4 border-b border-gray-300 pb-8" :class="displayStyle">
+  <div
+    class="attachments mb-8 grid grid-cols-4 gap-4 border-b border-gray-300 pb-8"
+    :class="displayStyle"
+  >
     <menu v-if="categories.length && !hideCategoryExplorer">
-      <button class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200" @click="reset">
+      <button
+        class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200"
+        @click="reset"
+      >
         <folder-icon class="mr-2 w-6" />
         {{ $t("media.words.home") }}
       </button>
@@ -11,7 +17,10 @@
             class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200"
             @click="refineCategory(currentCategory, 'model')"
           >
-            <folder-open-icon class="mr-2 w-6" v-if="activeFolder === 'model'" />
+            <folder-open-icon
+              class="mr-2 w-6"
+              v-if="activeFolder === 'model'"
+            />
             <folder-icon class="mr-2 w-6" v-else />
             {{ $t("media.headings.model") }}
           </button>
@@ -20,7 +29,10 @@
               v-for="category in categories"
               :key="category.id"
               class="mb-1"
-              :class="{ open: currentCategory === category.id && activeFolder === 'model' }"
+              :class="{
+                open:
+                  currentCategory === category.id && activeFolder === 'model',
+              }"
             >
               <button
                 class="flex w-full items-center rounded px-4 py-2 hover:bg-gray-200"
@@ -28,7 +40,9 @@
               >
                 <folder-open-icon
                   class="mr-2 w-6"
-                  v-if="currentCategory === category.id && activeFolder === 'model'"
+                  v-if="
+                    currentCategory === category.id && activeFolder === 'model'
+                  "
                 />
                 <folder-icon class="mr-2 w-6" v-else />
                 {{ category.name }}
@@ -36,9 +50,18 @@
             </li>
           </ul>
         </li>
-        <li v-if="parentModel && parentModelClass" :class="{ open: activeFolder === 'parent' }">
-          <button class="flex items-center" @click="refineCategory(currentCategory, 'parent')">
-            <folder-open-icon class="mr-2 w-6" v-if="activeFolder === 'parent'" />
+        <li
+          v-if="parentModel && parentModelClass"
+          :class="{ open: activeFolder === 'parent' }"
+        >
+          <button
+            class="flex items-center"
+            @click="refineCategory(currentCategory, 'parent')"
+          >
+            <folder-open-icon
+              class="mr-2 w-6"
+              v-if="activeFolder === 'parent'"
+            />
             <folder-icon class="mr-2 w-6" v-else />
             {{ $t("media.headings.parent") }}
           </button>
@@ -46,12 +69,20 @@
             <li
               v-for="category in categories"
               :key="category.id"
-              :class="{ open: currentCategory === category.id && activeFolder === 'parent' }"
+              :class="{
+                open:
+                  currentCategory === category.id && activeFolder === 'parent',
+              }"
             >
-              <button class="flex items-center" @click="refineCategory(category, 'parent')">
+              <button
+                class="flex items-center"
+                @click="refineCategory(category, 'parent')"
+              >
                 <folder-open-icon
                   class="mr-2 w-6"
-                  v-if="currentCategory === category.id && activeFolder === 'parent'"
+                  v-if="
+                    currentCategory === category.id && activeFolder === 'parent'
+                  "
                 />
                 <folder-icon class="mr-2 w-6" v-else />
                 {{ category.name }}
@@ -272,7 +303,8 @@ export default {
     },
     updateParents(category) {
       if (this.parentCategories.length > 0) {
-        const lastItem = this.parentCategories[this.parentCategories.length - 1];
+        const lastItem =
+          this.parentCategories[this.parentCategories.length - 1];
         // if last item in the array has the same parent then remove it
         if (lastItem.parent_id === category.parent_id) {
           this.parentCategories.pop();
@@ -324,9 +356,14 @@ export default {
         }
       }
       axios
-        .get(this.activeFolder === "model" ? this.modelExistingEndpoint : this.parentExistingEndpoint, {
-          params,
-        })
+        .get(
+          this.activeFolder === "model"
+            ? this.modelExistingEndpoint
+            : this.parentExistingEndpoint,
+          {
+            params,
+          },
+        )
         .then(({ data }) => {
           this.media = [];
           if (data.length) {
@@ -370,7 +407,10 @@ export default {
         return "media-video";
       }
 
-      if (_.startsWith(file.mime_type, "application") || _.startsWith(file.mime_type, "text")) {
+      if (
+        _.startsWith(file.mime_type, "application") ||
+        _.startsWith(file.mime_type, "text")
+      ) {
         return "media-application";
       }
 
