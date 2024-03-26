@@ -82,7 +82,7 @@ return [
         // categories
     ],
     
-        'route_name_prefix' => env('LARAVEL_ATTACHMENTS_ROUTE_NAME_PREFIX', 'laravel_attachments.'),
+        'route_name_prefix' => env('LARAVEL_ATTACHMENTS_ROUTE_NAME_PREFIX', 'laravel_attachments'),
 ];
 
 ```
