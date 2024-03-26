@@ -43,7 +43,7 @@ Then add the following to your `RouteServiceProvider`
 Add the following file to to your css file.
 
 ```css
- @import "../../vendor/dcodegroup/laravel-attachments/resources/postcss/attachments.pcss";
+ @import "../../vendor/dcodegroup/laravel-attachments/resources/scss/attachments.scss";
 ```
 
 Add the below to the `app.js` file.
