@@ -151,7 +151,7 @@
 </template>
 
 <script>
-import { PencilIcon, TrashIcon, ArrowDownIcon } from "@heroicons/vue/solid";
+import { PencilIcon, TrashIcon, ArrowDownIcon } from "@heroicons/vue/24/solid";
 import bytes from "bytes";
 import Upload from "./Upload.vue";
 import MediaImage from "./MediaImage.vue";

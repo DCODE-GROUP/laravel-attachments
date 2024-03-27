@@ -6,7 +6,7 @@
         <small :v-text="alertText" />
       </div>
       <button>
-        <x-icon class="h-4 w-4" />
+        <x-mark-icon class="h-4 w-4" />
       </button>
     </header>
     <select v-model="form.category_id" @change="update">
@@ -19,13 +19,13 @@
 
 <script>
 import Form from "form-backend-validation";
-import { CheckIcon, XIcon } from "@heroicons/vue/solid";
+import { CheckIcon, XMarkIcon } from "@heroicons/vue/24/solid";
 
 export default {
   name: "InlineCategoryUpdater",
   components: {
     CheckIcon,
-    XIcon,
+    XMarkIcon,
   },
   props: {
     model: {

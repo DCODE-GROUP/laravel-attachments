@@ -34,15 +34,12 @@
 </template>
 
 <script>
-import { PlusIcon } from "@heroicons/vue/solid";
+import { PlusIcon } from "@heroicons/vue/24/solid";
 import VueUploadComponent from "vue-upload-component";
-import Icon from "./Icon.vue";
 export default {
   name: "Upload",
-
   components: {
     FileUpload: VueUploadComponent,
-    Icon,
     PlusIcon,
   },
 

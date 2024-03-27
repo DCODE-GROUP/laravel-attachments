@@ -8,7 +8,7 @@
         <div class="modal" @click.stop>
           <h2>{{ $t("media.table.headings.select_existing") }}</h2>
           <div class="close" @click="show = false">
-            <x-icon class="h-6 w-6" />
+            <x-mark-icon class="h-6 w-6" />
           </div>
           <div class="content">
             <media-list
@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import { CheckIcon, XIcon } from "@heroicons/vue/solid";
+import { XMarkIcon } from "@heroicons/vue/24/solid";
 import MediaList from "./MediaList.vue";
 
 export default {
-  components: { MediaList },
+  components: { MediaList, XMarkIcon },
   props: {
     model: {
       type: Object,
