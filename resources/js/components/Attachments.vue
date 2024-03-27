@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import { FolderIcon, FolderOpenIcon } from "@heroicons/vue/solid";
+import { FolderIcon, FolderOpenIcon } from "@heroicons/vue/24/solid";
 import ModelMedia from "./ModelMedia.vue";
 import bytes from "bytes";
 

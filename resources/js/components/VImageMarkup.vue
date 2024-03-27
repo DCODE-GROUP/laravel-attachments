@@ -81,13 +81,13 @@
             :class="{ active: toolSelected === 'text' }"
             @click="textMode"
           >
-            <adjustments-icon class="h-6 w-6" />
+            <adjustments-vertical-icon class="h-6 w-6" />
           </button>
           <button
             :class="{ active: toolSelected === 'move' }"
             @click="moveMode"
           >
-            <arrows-expand-icon class="h-6 w-6" />
+            <arrows-pointing-out-icon class="h-6 w-6" />
           </button>
           <button :disabled="stroke === 8" @click="increaseStroke">
             <plus-icon class="h-6 w-6" />
@@ -122,12 +122,12 @@
             </div>
           </div>
           <button ref="clear" @click="clearMode">
-            <rewind-icon class="h-6 w-6" />
+            <backward-icon class="h-6 w-6" />
           </button>
         </nav>
       </div>
       <button class="button success" @click="saveImg">
-        <save-icon class="h-6 w-6" />
+        <arrow-down-on-square-icon class="h-6 w-6" />
         <span>Save</span>
       </button>
     </div>
@@ -138,24 +138,25 @@
 import {
   TrashIcon,
   PencilIcon,
-  AdjustmentsIcon,
-  ArrowsExpandIcon,
+  AdjustmentsVerticalIcon,
+  ArrowsPointingOutIcon,
   PlusIcon,
   MinusIcon,
-  RewindIcon,
-  SaveIcon,
-} from "@heroicons/vue/solid";
+  BackwardIcon,
+  ArrowDownOnSquareIcon,
+} from "@heroicons/vue/24/solid";
 import Editor from "vue-image-markup";
 export default {
   components: {
     Editor: Editor,
     TrashIcon,
     PencilIcon,
-    ArrowsExpandIcon,
+    AdjustmentsVerticalIcon,
+    ArrowsPointingOutIcon,
     PlusIcon,
     MinusIcon,
-    RewindIcon,
-    SaveIcon,
+    BackwardIcon,
+    ArrowDownOnSquareIcon,
   },
   props: {
     items: {

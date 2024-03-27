@@ -5,7 +5,7 @@
     target="_blank"
     :title="!error ? generateName : 'undefined-filename'"
   >
-    <refresh-icon v-if="error" class="h-6 w-6 animate-spin" />
+    <arrow-path-icon v-if="error" class="h-6 w-6 animate-spin" />
     <img
       v-else
       :src="media[displayStyle + '_url']"
@@ -15,20 +15,20 @@
     />
   </a>
   <a v-else :href="media.url" target="_blank">
-    <template-icon class="h-6 w-6" />
+    <rectangle-group-icon class="h-6 w-6" />
   </a>
 </template>
 
 <script>
-import { TemplateIcon, RefreshIcon } from "@heroicons/vue/solid";
+import { RectangleGroupIcon, ArrowPathIcon } from "@heroicons/vue/24/solid";
 import MediaElement from "../mixins/MediaElement.js";
 
 export default {
   name: "Application",
   extends: MediaElement,
   components: {
-    TemplateIcon,
-    RefreshIcon,
+    RectangleGroupIcon,
+    ArrowPathIcon,
   },
   computed: {
     generateName() {
