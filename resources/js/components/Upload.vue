@@ -20,7 +20,7 @@
   >
     <div class="text-center">
       <plus-icon class="mx-auto mb-4 h-12 w-12" />
-      <p>{{ $t("media.phrase.upload_area") }}</p>
+      <p>{{ $t("media.phrase.upload_area") }} here</p>
       <button
         v-show="$refs.upload && $refs.upload.active"
         type="button"
