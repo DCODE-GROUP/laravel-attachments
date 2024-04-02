@@ -41,7 +41,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getDeleteEndpointAttribute(): string
     {
-        return route(config('attachments.route_name_prefix').'.media.destroy', $this);
+        return route(config('attachments.route_name_prefix').'.media.delete', $this);
     }
 
 
