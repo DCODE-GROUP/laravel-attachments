@@ -34,9 +34,16 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         'preview_url',
         'thumb_url',
         'url',
+        'delete_endpoint',
     ];
 
     private $applicationImage = null;
+
+    public function getDeleteEndpointAttribute(): string
+    {
+        return route(config('attachments.route_name_prefix').'.media.destroy', $this);
+    }
+
 
     public function getThumbUrlAttribute(): string
     {
