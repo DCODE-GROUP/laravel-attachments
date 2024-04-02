@@ -270,17 +270,17 @@ export default {
       return value == null ? "" : bytes(value);
     },
     capitalize(value) {
-      return value == null ? "" : _.upperFirst(value);
+      return value == null ? "" : value.charAt(0).toUpperCase() + value.slice(1);
     },
     getComponent(file) {
       if (!file) {
         return "default";
       }
-      if (_.startsWith(file.mime_type, "image")) {
+      if (file.mime_type.startsWith("image")) {
         return "media-image";
       }
 
-      if (_.startsWith(file.mime_type, "video")) {
+      if (file.mime_type.startsWith("video")) {
         return "media-video";
       }
 
@@ -292,8 +292,8 @@ export default {
     },
     isApplication(file) {
       return (
-        _.startsWith(file.mime_type, "application") ||
-        _.startsWith(file.mime_type, "text")
+          file.mime_type.startsWith("application") ||
+          file.mime_type.startsWith("text")
       );
     },
     fireUploadedEvent(item) {
