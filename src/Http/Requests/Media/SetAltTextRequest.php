@@ -26,7 +26,7 @@ class SetAltTextRequest extends FormRequest
         return [
             'alt_text' => [
                 'required',
-                'string'
+                'string',
             ],
         ];
     }
