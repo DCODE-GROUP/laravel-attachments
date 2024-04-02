@@ -44,7 +44,6 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         return route(config('attachments.route_name_prefix').'.media.destroy', $this);
     }
 
-
     public function getThumbUrlAttribute(): string
     {
         return $this->getUrl('thumb');
