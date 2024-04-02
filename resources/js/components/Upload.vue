@@ -6,7 +6,7 @@
     class="justify-center flex w-full !cursor-pointer items-center rounded border border-dashed border-gray-500 p-4 hover:bg-gray-50"
     :post-action="uploadEndpoint"
     :headers="{
-      'X-CSRF-TOKEN': csrf,
+      'X-CSRF-TOKEN': window.csrf,
     }"
     accept="image/*,video/mp4,video/x-m4v,video/*,audio/mpeg,audio/wav,audio/x-wav,audio/mp4,audio/mp3,application/vnd.oasis.opendocument.presentation,application/vnd.oasis.opendocument.spreadsheet,application/vnd.oasis.opendocument.text,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/rtf,text/plain,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/pdf"
     :multiple="true"
