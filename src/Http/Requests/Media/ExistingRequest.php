@@ -35,7 +35,6 @@ class ExistingRequest extends FormRequest
             ],
             'modelId' => [
                 'required',
-                'integer',
                 new ModelExists($this->query->get('modelClass', ''), 'id'),
             ],
         ];
