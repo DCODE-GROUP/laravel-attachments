@@ -91,7 +91,9 @@ return [
         // categories
     ],
     
-        'route_name_prefix' => env('LARAVEL_ATTACHMENTS_ROUTE_NAME_PREFIX', 'laravel_attachments'),
+    'route_name_prefix' => env('LARAVEL_ATTACHMENTS_ROUTE_NAME_PREFIX', 'laravel_attachments'),
+    
+    'signed' => env('LARAVEL_ATTACHMENTS_URLS_SIGNED', false),
 ];
 
 ```
