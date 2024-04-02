@@ -30,7 +30,6 @@ class AttachRequest extends FormRequest
             ],
             'modelId' => [
                 'required',
-                'integer',
                 new ModelExists($this->request->get('modelClass'), 'id'),
             ],
         ];

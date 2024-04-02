@@ -29,7 +29,6 @@ class UploadRequest extends FormRequest
             'modelClass' => ['required', 'string'],
             'modelId' => [
                 'required',
-                'integer',
                 new ModelExists($this->request->get('modelClass'), 'id'),
             ],
         ];

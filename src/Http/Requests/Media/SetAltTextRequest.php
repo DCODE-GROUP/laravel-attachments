@@ -24,7 +24,10 @@ class SetAltTextRequest extends FormRequest
     public function rules()
     {
         return [
-            'alt_text' => 'required|string',
+            'alt_text' => [
+                'required',
+                'string'
+            ],
         ];
     }
 }
