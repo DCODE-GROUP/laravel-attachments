@@ -270,7 +270,9 @@ export default {
       return value == null ? "" : bytes(value);
     },
     capitalize(value) {
-      return value == null ? "" : value.charAt(0).toUpperCase() + value.slice(1);
+      return value == null
+        ? ""
+        : value.charAt(0).toUpperCase() + value.slice(1);
     },
     getComponent(file) {
       if (!file) {
@@ -292,8 +294,8 @@ export default {
     },
     isApplication(file) {
       return (
-          file.mime_type.startsWith("application") ||
-          file.mime_type.startsWith("text")
+        file.mime_type.startsWith("application") ||
+        file.mime_type.startsWith("text")
       );
     },
     fireUploadedEvent(item) {
