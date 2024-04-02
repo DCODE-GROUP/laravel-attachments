@@ -181,6 +181,15 @@ class MediaPolicy
 }
 ```
 
+If you are using `S3` or another hosted service you may need to use signed urls to access the urls.
+
+If yes then update the configuration or the ENV variable to true.
+
+```php
+    'use_signed_urls' => env('USE_SIGNED_URLS', true),
+```
+
+This package will use `dreamonkey/laravel-cloudfront-url-signer` https://github.com/dreamonkey/laravel-cloudfront-url-signer. See the README for how to configure.
 
 ## User model
 
