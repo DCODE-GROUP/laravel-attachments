@@ -87,7 +87,7 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'attachments');
 
         $this->publishes([
-            __DIR__.'/../lang' => $this->app->langPath('vendor/attachments'),
+            __DIR__.'/../lang' => $this->app->langPath('en/vendor/dcodegroup/laravel-attachments'),
         ], 'laravel-attachments-translations');
     }
 
