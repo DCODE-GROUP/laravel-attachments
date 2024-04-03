@@ -100,6 +100,7 @@
                 :title="item.custom_properties.original_filename"
               >
                 <arrow-down-icon />
+                here downlaod
               </a>
               <button
                 v-if="allowDeleting"
