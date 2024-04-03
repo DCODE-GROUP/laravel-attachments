@@ -99,8 +99,7 @@
                 class="button -hollow sml"
                 :title="item.custom_properties.original_filename"
               >
-                <arrow-down-icon />
-                here downlaod
+                <arrow-down-icon class="h-6 w-6" />
               </a>
               <button
                 v-if="allowDeleting"
