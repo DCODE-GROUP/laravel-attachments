@@ -78,6 +78,10 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getUrlAttribute(): string
     {
+        if (config('attachments.signed')) {
+            return sign($this->getUrl());
+        }
+
         return $this->getUrl();
     }
 
