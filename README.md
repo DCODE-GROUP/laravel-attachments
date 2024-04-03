@@ -193,6 +193,21 @@ If yes then update the configuration or the ENV variable to true.
 
 This package will use `dreamonkey/laravel-cloudfront-url-signer` https://github.com/dreamonkey/laravel-cloudfront-url-signer. See the README for how to configure.
 
+Here is how to generate the ssh keys.
+Make sure to have a directory `storage/cloudfront-keypairs`
+
+then 
+
+```bash 
+openssl genrsa -out private_key.pem 2048
+```
+
+then 
+
+```bash
+openssl rsa -pubout -in private_key.pem -out public_key.pem
+```
+
 ## User model
 
 Add the following contract to the `User` model.

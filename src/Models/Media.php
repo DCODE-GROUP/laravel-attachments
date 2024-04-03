@@ -2,6 +2,7 @@
 
 namespace Dcodegroup\LaravelAttachments\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Imagick;
 use ImagickException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 {
@@ -41,7 +43,11 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getDeleteEndpointAttribute(): string
     {
-        return route(config('attachments.route_name_prefix').'.media.delete', $this);
+        try {
+            return route(config('attachments.route_name_prefix').'.media.delete', $this);
+        } catch (RouteNotFoundException|Exception $e) {
+            return '';
+        }
     }
 
     public function getThumbUrlAttribute(): string
