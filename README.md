@@ -193,7 +193,9 @@ If yes then update the configuration or the ENV variable to true.
 
 This package will use `dreamonkey/laravel-cloudfront-url-signer` https://github.com/dreamonkey/laravel-cloudfront-url-signer. See the README for how to configure.
 
-Here is how to generate the ssh keys. Make sure to have a directory `storage/cloudfront-keypairs`
+Here is how to generate the ssh keys. Make sure to have a directory `storage/cloudfront-keypairs` 
+
+Source of below is from https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html?icmpid=docs_cf_help_panel#private-content-creating-cloudfront-key-pairs
 
 then 
 
