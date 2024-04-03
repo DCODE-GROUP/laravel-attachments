@@ -15,9 +15,13 @@
         @isset($selectExisting)
             add-existing-endpoint="{{ route(config('attachments.route_name_prefix').'.media.existing', ['modelClass' => get_class($selectExisting), 'modelId' => $selectExisting->id]) }}"
         @endisset
-        :permit-delete="true"
+        @isset($permitDelete)
+            :permit-delete="true"
+        @endisset
         {{-- Permit edit needs to set to true, roles are not set correctly on my local --}}
-        :permit-edit="true"
+        @isset($permitEdit)
+            :permit-edit="true"
+        @endisset
         @isset($showOnly)
             :show-only="true"
         @endisset
