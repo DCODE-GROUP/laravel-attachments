@@ -12,6 +12,32 @@ Then run
 php artisan vendor:publish --provider="Dcodegroup\LaravelAttachments\LaravelAttachmentsServiceProvider"
 ```
 
+## Database
+
+If you are using either `ULIDS` or `UUIDs` in your tables ensure to update the published migrations for the `media` table.
+
+
+eg. replace with the appropriate type
+```php
+    Schema::create('media', function (Blueprint $table) {
+    ...
+        $table->nullableUuidMorphs('model');
+        $table->nullableUuidMorphs('parent_model');
+```
+
+or
+
+```php
+    Schema::create('media', function (Blueprint $table) {
+    ...
+        $table->nullableUlidMorphs('model');
+        $table->nullableUlidMorphs('parent_model');
+```
+
+Then run the migrations
+
+```bash 
+
 ## Routes 
 
 Add the Routes to the file you need such as `laravel_attachments.php`
