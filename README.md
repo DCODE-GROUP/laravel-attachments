@@ -136,6 +136,12 @@ Then change the media model used to
     'media_model' => \Dcodegroup\LaravelAttachments\Models\Media::class,
 ```
 
+Update the path generator from the default to our customised one.
+
+```php
+    'path_generator' => \Dcodegroup\LaravelAttachments\MediaLibrary\MediaPathGenerator::class,
+```
+
 You probably want to change the disk for stored files from `media-library` also.
 
 ```php
