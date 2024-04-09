@@ -128,6 +128,7 @@
       :display-style="displayStyle"
       :permit-delete="permitDelete"
       :permit-edit="permitEdit"
+      :permit-upload="permitUpload"
       :show-only="showOnly"
       :current-category="currentCategory"
       :heading-text="headingText"

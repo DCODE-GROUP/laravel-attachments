@@ -22,6 +22,9 @@
         @isset($permitEdit)
             :permit-edit="{{ $permitEdit }}"
         @endisset
+        @isset($permitUpload)
+            :permit-upload="{{ $permitUpload }}"
+        @endisset
         @isset($showOnly)
             :show-only="true"
         @endisset
