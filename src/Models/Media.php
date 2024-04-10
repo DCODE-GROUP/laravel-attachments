@@ -53,27 +53,27 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getThumbUrlAttribute(): string
     {
-//        if (config('attachments.signed')) {
-//            return $this->getImageUrl('thumb');
-//        }
+        //        if (config('attachments.signed')) {
+        //            return $this->getImageUrl('thumb');
+        //        }
 
         return $this->getUrl('thumb');
     }
 
     public function getListUrlAttribute(): string
     {
-//        if (config('attachments.signed')) {
-//            return sign($this->getImageUrl('list'));
-//        }
+        //        if (config('attachments.signed')) {
+        //            return sign($this->getImageUrl('list'));
+        //        }
 
         return $this->getUrl('list');
     }
 
     public function getGridUrlAttribute(): string
     {
-//        if (config('attachments.signed')) {
-//            return sign($this->getImageUrl('grid'));
-//        }
+        //        if (config('attachments.signed')) {
+        //            return sign($this->getImageUrl('grid'));
+        //        }
 
         return $this->getUrl('grid');
     }
@@ -85,9 +85,9 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getUrlAttribute(): string
     {
-//        if (config('attachments.signed')) {
-//            return sign($this->getUrl());
-//        }
+        //        if (config('attachments.signed')) {
+        //            return sign($this->getUrl());
+        //        }
 
         return $this->getUrl();
     }
