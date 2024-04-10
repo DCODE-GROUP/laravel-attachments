@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Imagick;
 use ImagickException;
+use Spatie\MediaLibrary\Support\UrlGenerator\UrlGeneratorFactory;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
@@ -52,27 +53,27 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getThumbUrlAttribute(): string
     {
-        if (config('attachments.signed')) {
-            return $this->getImageUrl('thumb');
-        }
+//        if (config('attachments.signed')) {
+//            return $this->getImageUrl('thumb');
+//        }
 
         return $this->getUrl('thumb');
     }
 
     public function getListUrlAttribute(): string
     {
-        if (config('attachments.signed')) {
-            return sign($this->getImageUrl('list'));
-        }
+//        if (config('attachments.signed')) {
+//            return sign($this->getImageUrl('list'));
+//        }
 
         return $this->getUrl('list');
     }
 
     public function getGridUrlAttribute(): string
     {
-        if (config('attachments.signed')) {
-            return sign($this->getImageUrl('grid'));
-        }
+//        if (config('attachments.signed')) {
+//            return sign($this->getImageUrl('grid'));
+//        }
 
         return $this->getUrl('grid');
     }
@@ -84,9 +85,9 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function getUrlAttribute(): string
     {
-        if (config('attachments.signed')) {
-            return sign($this->getUrl());
-        }
+//        if (config('attachments.signed')) {
+//            return sign($this->getUrl());
+//        }
 
         return $this->getUrl();
     }
@@ -111,9 +112,24 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         return $this->hasMany(self::class, 'parent_id', 'id');
     }
 
+    public function getUrl(string $conversionName = ''): string
+    {
+        $urlGenerator = UrlGeneratorFactory::createForMedia($this, $conversionName);
+
+        if (config('attachments.signed')) {
+            return sign($urlGenerator->getUrl());
+        }
+
+        return $urlGenerator->getUrl();
+    }
+
     private function getImageUrl(?string $conversionName = '')
     {
         if ($this->parent_id) {
+            if (config('attachments.signed')) {
+                return sign(Storage::disk(config('filesystems.default'))->url($this->file_name));
+            }
+
             return Storage::disk(config('filesystems.default'))->url($this->file_name);
         }
 
@@ -121,7 +137,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
             return $this->preview_application_url;
         }
 
-        return parent::getUrl($conversionName);
+        return $this->getUrl($conversionName);
     }
 
     public function getAddAnnotationEndpointAttribute()
@@ -139,6 +155,10 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
         if ($child) {
             $this->applicationImage = Storage::disk(config('filesystems.default'))->url($child->file_name);
+
+            if (config('attachments.signed')) {
+                return sign($this->applicationImage);
+            }
 
             return $this->applicationImage;
         }
