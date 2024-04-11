@@ -30,7 +30,7 @@
         "dreamonkey/laravel-cloudfront-url-signer": "^3.4",
         "laravel/framework": "^9.0 || ^10.0 || ^11.0",
         "mvanduijker/laravel-model-exists-rule": "^3.0",
-        "spatie/laravel-medialibrary": "^11.4.6",
+        "spatie/laravel-medialibrary": "^11.0",
         "spatie/pdf-to-image": "^2.2"
     },
     "require-dev": {
