@@ -3,7 +3,7 @@
 Simple Dropin package to add attachments to your models.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dcodegroup/laravel-attachments.svg?style=flat-square)](https://packagist.org/packages/dcodegroup/laravel-attachments)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/dcodegroup/laravel-attachments/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/laravel-attachments/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/dcodegroup/laravel-attachments/pgp-cs-fixer.yml?branch=master&label=code%20style&style=flat-square)](https://github.com/DCODE-GROUP/laravel-attachments/actions?query=workflow%3A"php-cs-fixer"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/dcodegroup/laravel-attachments.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/laravel-attachments)
 
 ## Install
