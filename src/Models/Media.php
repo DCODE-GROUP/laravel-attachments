@@ -18,7 +18,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
     /**
      * The relations to eager load on every query.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $with = [
         'category',
