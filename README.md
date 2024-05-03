@@ -280,6 +280,3 @@ Add the template to the edit page you want.
     @endif
 
 ```
-
-test 2
-
