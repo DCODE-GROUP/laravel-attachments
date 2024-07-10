@@ -27,8 +27,8 @@ eg. replace with the appropriate type
 ```php
     Schema::create('media', function (Blueprint $table) {
     ...
-        $table->nullableUuidMorphs('model');
-        $table->nullableUuidMorphs('parent_model');
+        $table->nullableMorphs('model');
+        $table->nullableMorphs('parent_model');
 ```
 
 or
