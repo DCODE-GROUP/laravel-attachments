@@ -7,7 +7,6 @@ Simple Dropin package to add attachments to your models.
 [![Total Downloads](https://img.shields.io/packagist/dt/dcodegroup/laravel-attachments.svg?style=flat-square)](https://packagist.org/packages/dcodegroup/laravel-attachments)
 
 ## Install
-
 | Version / Branch | Laravel Support | Install Command                                        |
 |------------------|-----------------|--------------------------------------------------------|
 | 0.x              | <= v10          | `composer require dcodegroup/laravel-attachments:^0.*` |
