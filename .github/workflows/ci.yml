@@ -53,6 +53,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: "dom, curl, libxml, mbstring, zip, fileinfo, redis, bcmath"
           coverage: none
+          tools: phpstan
 
       - name: Cache composer dependencies
         uses: actions/cache@v4
