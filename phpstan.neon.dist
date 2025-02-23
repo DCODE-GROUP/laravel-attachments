@@ -17,6 +17,7 @@ parameters:
     ignoreErrors:
         - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder::allowedFilters#'
         - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Model::getActivityLogUserName#'
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Model::deleteMedia#'
         - '#Class App\\Models\\User not found#'
         - '#Method Dcodegroup\\LaravelAttachments\\Models\\Media::getImageUrl\(\) is unused#'
         - '#Access to an undefined property Dcodegroup\\LaravelAttachments\\Models\\Media::\$parent_id#'
