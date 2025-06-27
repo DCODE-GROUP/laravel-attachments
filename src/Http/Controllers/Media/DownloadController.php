@@ -11,7 +11,7 @@ class DownloadController
 {
     use AuthorizesRequests;
 
-    public function __invoke(Request $request, int $media): BinaryFileResponse
+    public function __invoke(Request $request, Media $media): BinaryFileResponse
     {
         $this->authorize('download', $media);
 
