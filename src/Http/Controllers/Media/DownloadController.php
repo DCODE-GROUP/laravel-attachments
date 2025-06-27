@@ -15,13 +15,6 @@ class DownloadController
     {
         $this->authorize('download', $media);
 
-        //        Storage::disk($media->disk)
-        //               ->path($media->getPath()),   Storage::disk($media->disk)
-        //               ->path($media->getPath()),
-
-        dd($media);
-        dd(Media::findOrFail($media));
-
         return response()->download(
             file: $media->getPath(),
             name: $media->custom_properties->original_filename
