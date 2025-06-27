@@ -114,11 +114,11 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         }
 
         $child = $this->children()
-                      ->first();
+            ->first();
 
         if ($child) {
             $this->applicationImage = Storage::disk(config('filesystems.default'))
-                                             ->url($child->file_name);
+                ->url($child->file_name);
 
             if (config('attachments.signed')) {
                 return sign($this->applicationImage);
@@ -141,7 +141,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
     {
         $this->children->each(function (self $media) {
             Storage::disk(config('filesystems.default'))
-                   ->delete($media->file_name);
+                ->delete($media->file_name);
             $media->delete();
         });
     }
@@ -160,7 +160,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
             $image->setImageFormat('jpg');
             $fileName = 'pages/'.$this->hashName();
             Storage::disk(config('filesystems.default'))
-                   ->put($fileName, $image->getImageBlob());
+                ->put($fileName, $image->getImageBlob());
             self::create([
                 'name' => "$this->name-page-$key.jpg",
                 'file_name' => $fileName,
@@ -204,11 +204,11 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         if ($this->parent_id) {
             if (config('attachments.signed')) {
                 return sign(Storage::disk(config('filesystems.default'))
-                                   ->url($this->file_name));
+                    ->url($this->file_name));
             }
 
             return Storage::disk(config('filesystems.default'))
-                          ->url($this->file_name);
+                ->url($this->file_name);
         }
 
         if ($this->preview_application_url) {
