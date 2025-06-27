@@ -218,6 +218,11 @@ class MediaPolicy
     {
         return $this->internalOnly($user);
     }
+    
+    public function download(User $user): bool
+    {
+        return $this->internalOnly($user);
+    }
 }
 ```
 
