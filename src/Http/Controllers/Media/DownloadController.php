@@ -7,19 +7,19 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DownloadController
 {
     use AuthorizesRequests;
 
-    public function __invoke(Request $request, Media $media): JsonResponse
+    public function __invoke(Request $request, Media $media): BinaryFileResponse
     {
-        $this->authorize('delete', $media);
+        $this->authorize('download', $media);
 
-        $media->model->deleteMedia($media);
-
-        return response()->json([
-            'message' => __('attachments::media.status.delete_success'),
-        ], Response::HTTP_NO_CONTENT);
+        return response()->download(
+            file: $media->original_url,
+            name: $media->custom_properties->original_filename
+        );
     }
 }
