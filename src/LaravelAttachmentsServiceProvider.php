@@ -56,7 +56,7 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
             Route::post("$prefix/attach", AttachController::class)->name("$name.attach");
             Route::post("$prefix/upload", UploadController::class)->name("$name.upload");
             Route::get("$prefix/existing", ExistingController::class)->name("$name.existing");
-            Route::get("$prefix/download", DownloadController::class)->name("$name.download");
+            Route::get("$prefix/download/{media}", DownloadController::class)->name("$name.download");
             Route::delete("$prefix/delete/{media}", DeleteController::class)->name("$name.delete");
 
             Route::patch("$prefix/title/{media}", SetTitleController::class)->name("$name.title");
