@@ -11,13 +11,16 @@ class DownloadController
 {
     use AuthorizesRequests;
 
-    public function __invoke(Request $request, Media $media): BinaryFileResponse
+    public function __invoke(Request $request, int $media): BinaryFileResponse
     {
         $this->authorize('download', $media);
 
         //        Storage::disk($media->disk)
         //               ->path($media->getPath()),   Storage::disk($media->disk)
         //               ->path($media->getPath()),
+
+        dd($media);
+        dd(Media::findOrFail($media));
 
         return response()->download(
             file: $media->getPath(),
