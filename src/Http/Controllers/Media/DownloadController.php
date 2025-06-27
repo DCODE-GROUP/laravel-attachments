@@ -5,7 +5,6 @@ namespace Dcodegroup\LaravelAttachments\Http\Controllers\Media;
 use Dcodegroup\LaravelAttachments\Models\Media;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DownloadController
@@ -17,9 +16,12 @@ class DownloadController
         $this->authorize('download', $media);
 
 
+//        Storage::disk($media->disk)
+//               ->path($media->getPath()),   Storage::disk($media->disk)
+//               ->path($media->getPath()),
+
         return response()->download(
-            file: Storage::disk($media->disk)
-                         ->path($media->getPath()),
+            file: $media->getPath(),
             name: $media->custom_properties->original_filename
         );
     }
