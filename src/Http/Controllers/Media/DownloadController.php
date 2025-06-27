@@ -16,7 +16,7 @@ class DownloadController
         $this->authorize('download', $media);
 
         return response()->download(
-            file: $media->original_url,
+            file: $media->getPath(),
             name: $media->custom_properties->original_filename
         );
     }
