@@ -15,20 +15,10 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 {
-    /**
-     * The relations to eager load on every query.
-     *
-     * @var array<int, string>
-     */
     protected $with = [
         'category',
     ];
 
-    /**
-     * The attributes that should be appended to model arrays.
-     *
-     * @var array<int, string>
-     */
     protected $appends = [
         'add_annotation_endpoint',
         'grid_url',
@@ -38,6 +28,7 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         'thumb_url',
         'url',
         'delete_endpoint',
+        'download_endpoint',
     ];
 
     private $applicationImage = null;
@@ -51,9 +42,29 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         }
     }
 
+    public function getDownloadEndpointAttribute(): string
+    {
+        try {
+            return route(config('attachments.route_name_prefix').'.media.download', $this);
+        } catch (RouteNotFoundException|Exception $e) {
+            return '';
+        }
+    }
+
     public function getThumbUrlAttribute(): string
     {
         return $this->getUrl('thumb');
+    }
+
+    public function getUrl(string $conversionName = ''): string
+    {
+        $urlGenerator = UrlGeneratorFactory::createForMedia($this, $conversionName);
+
+        if (config('attachments.signed')) {
+            return sign($urlGenerator->getUrl());
+        }
+
+        return $urlGenerator->getUrl();
     }
 
     public function getListUrlAttribute(): string
@@ -91,39 +102,6 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         return $this->hasMany(MediaAnnotation::class);
     }
 
-    public function children(): HasMany
-    {
-        return $this->hasMany(self::class, 'parent_id', 'id');
-    }
-
-    public function getUrl(string $conversionName = ''): string
-    {
-        $urlGenerator = UrlGeneratorFactory::createForMedia($this, $conversionName);
-
-        if (config('attachments.signed')) {
-            return sign($urlGenerator->getUrl());
-        }
-
-        return $urlGenerator->getUrl();
-    }
-
-    private function getImageUrl(?string $conversionName = '')
-    {
-        if ($this->parent_id) {
-            if (config('attachments.signed')) {
-                return sign(Storage::disk(config('filesystems.default'))->url($this->file_name));
-            }
-
-            return Storage::disk(config('filesystems.default'))->url($this->file_name);
-        }
-
-        if ($this->preview_application_url) {
-            return $this->preview_application_url;
-        }
-
-        return $this->getUrl($conversionName);
-    }
-
     public function getAddAnnotationEndpointAttribute()
     {
         return route(config('attachments.route_name_prefix').'.media.annotations.store', $this);
@@ -135,10 +113,12 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
             return $this->applicationImage;
         }
 
+        /** @var Media $child */
         $child = $this->children()->first();
 
-        if ($child) {
-            $this->applicationImage = Storage::disk(config('filesystems.default'))->url($child->file_name);
+        if ($child != null) {
+            $this->applicationImage = Storage::disk(config('filesystems.default'))
+                ->url($child->file_name);
 
             if (config('attachments.signed')) {
                 return sign($this->applicationImage);
@@ -152,10 +132,16 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         return $this->applicationImage;
     }
 
+    public function children(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
     public function deleteChildren()
     {
+        // @phpstan-ignore-next-line
         $this->children->each(function (self $media) {
-            Storage::disk(config('filesystems.default'))->delete($media->file_name);
+            Storage::disk($media->disk ?? config('filesystems.default'))->delete($media->file_name);
             $media->delete();
         });
     }
@@ -173,7 +159,8 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
             $image->setIteratorIndex($key);
             $image->setImageFormat('jpg');
             $fileName = 'pages/'.$this->hashName();
-            Storage::disk(config('filesystems.default'))->put($fileName, $image->getImageBlob());
+            Storage::disk(config('filesystems.default'))
+                ->put($fileName, $image->getImageBlob());
             self::create([
                 'name' => "$this->name-page-$key.jpg",
                 'file_name' => $fileName,
@@ -210,5 +197,24 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         $this->update([
             'category_id' => $categoryId,
         ]);
+    }
+
+    private function getImageUrl(?string $conversionName = '')
+    {
+        if ($this->parent_id) {
+            if (config('attachments.signed')) {
+                return sign(Storage::disk(config('filesystems.default'))
+                    ->url($this->file_name));
+            }
+
+            return Storage::disk(config('filesystems.default'))
+                ->url($this->file_name);
+        }
+
+        if ($this->preview_application_url) {
+            return $this->preview_application_url;
+        }
+
+        return $this->getUrl($conversionName);
     }
 }
