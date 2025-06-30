@@ -21,3 +21,6 @@ parameters:
         - '#Class App\\Models\\User not found#'
         - '#Method Dcodegroup\\LaravelAttachments\\Models\\Media::getImageUrl\(\) is unused#'
         - '#Access to an undefined property Dcodegroup\\LaravelAttachments\\Models\\Media::\$parent_id#'
+        -
+          message: "#Called 'env' outside of the config directory which returns null when the config is cached, use 'config'#"
+          path: 'config/attachments.php'

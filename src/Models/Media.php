@@ -113,10 +113,10 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
             return $this->applicationImage;
         }
 
-        $child = $this->children()
-            ->first();
+        /** @var Media $child */
+        $child = $this->children()->first();
 
-        if ($child) {
+        if ($child != null) {
             $this->applicationImage = Storage::disk(config('filesystems.default'))
                 ->url($child->file_name);
 
@@ -139,9 +139,9 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
 
     public function deleteChildren()
     {
+        // @phpstan-ignore-next-line
         $this->children->each(function (self $media) {
-            Storage::disk(config('filesystems.default'))
-                ->delete($media->file_name);
+            Storage::disk($media->disk ?? config('filesystems.default'))->delete($media->file_name);
             $media->delete();
         });
     }
