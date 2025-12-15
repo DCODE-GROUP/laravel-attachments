@@ -262,6 +262,7 @@ export default {
   data() {
     return {};
   },
+  inject:["bus"],
   methods: {
     formatDate(value) {
       return value == null ? "" : new Date(value).toLocaleDateString();
@@ -305,14 +306,13 @@ export default {
       this.$emit("media-deleted", { id: item.id, index: index });
     },
     fireEditEvent(item) {
-      // console.log("reached fireEditEvent", item)
-      // this.$root.$emit("openSidePanel", {
-      //   componentName: "SidePanelImageMarkup",
-      //   componentData: {
-      //     items: this.getMedia(item),
-      //   },
-      //   title: `Edit ${item.custom_properties.original_filename}`,
-      // });
+      this.bus.$emit("openSidePanel", {
+        componentName: "SidePanelImageMarkup",
+        componentData: {
+          items: this.getMedia(item),
+        },
+        title: `Edit ${item.custom_properties.original_filename}`,
+      });
     },
     getMedia(item) {
       if (this.isApplication(item) && item.children.length) {
