@@ -262,7 +262,7 @@ export default {
   data() {
     return {};
   },
-  inject:["bus"],
+  inject: ["bus"],
   methods: {
     formatDate(value) {
       return value == null ? "" : new Date(value).toLocaleDateString();
