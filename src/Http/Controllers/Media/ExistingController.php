@@ -24,6 +24,9 @@ class ExistingController
             $mediaQuery->where('category_id', $request->input('category_id'));
         }
 
-        return $mediaQuery->with(['annotations', 'children', 'children.annotations'])->get()->toArray();
+        return $mediaQuery->with(['annotations', 'children', 'children.annotations'])
+            ->orderby('order_column')
+            ->get()
+            ->toArray();
     }
 }

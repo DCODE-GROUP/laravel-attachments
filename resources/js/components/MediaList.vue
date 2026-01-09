@@ -17,6 +17,9 @@
         <th v-if="categoryOptions.length && allowUpdatingCategory">
           {{ $t("media.table.headings.category") }}
         </th>
+        <th v-if="!compact">
+          {{ $t("media.table.headings.order") }}
+        </th>
         <th v-if="showFileSize">
           {{ $t("media.table.headings.size") }}
         </th>
@@ -73,6 +76,12 @@
                   : null
               "
             />
+          </td>
+          <td>
+            <order-column-updater
+                :model="item"
+                :set-endpoint="item.hasOwnProperty('set_order_column_endpoint') ? item.set_order_column_endpoint : null"
+            ></order-column-updater>
           </td>
           <td v-if="showFileSize">
             {{ formatFileSize(item.size) }}
@@ -162,6 +171,7 @@ import Icon from "./Icon.vue";
 import InlineCategoryUpdater from "./InlineCategoryUpdater.vue";
 import TitleUpdater from "./TitleUpdater.vue";
 import AltTextUpdater from "./AltTextUpdater.vue";
+import OrderColumnUpdater from "./OrderColumnUpdater.vue";
 
 export default {
   components: {
@@ -173,6 +183,7 @@ export default {
     InlineCategoryUpdater,
     TitleUpdater,
     AltTextUpdater,
+    OrderColumnUpdater,
     Icon,
     PencilIcon,
     TrashIcon,

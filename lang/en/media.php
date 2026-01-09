@@ -33,6 +33,7 @@ return [
         'delete_success' => 'Media Deleted Successfully',
         'upload_failed' => 'Media Uploaded FAILED',
         'upload_success' => 'Media Uploaded Successfully',
+        'update_success' => 'Media Updated Successfully',
     ],
 
     'buttons' => [
