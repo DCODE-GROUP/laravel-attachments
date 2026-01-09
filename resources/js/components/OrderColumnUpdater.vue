@@ -9,7 +9,12 @@
         <x-icon class="h-4 w-4" />
       </button>
     </header>
-    <input type="text" v-model="form.order_column" @blur="update" class="w-20">
+    <input
+      type="text"
+      v-model="form.order_column"
+      @blur="update"
+      class="w-20"
+    />
   </div>
 </template>
 
@@ -40,7 +45,7 @@ export default {
   data() {
     return {
       form: new Form({
-        order_column: this.model.order_column
+        order_column: this.model.order_column,
       }),
       showAlert: false,
       alertText: "",
@@ -55,18 +60,22 @@ export default {
   methods: {
     update() {
       this.form
-          .patch(this.setEndpoint ? this.setEndpoint : `/frontend/admin/media/ordercolumn/${this.model.id}`)
-          .then((data) => {
-            this.alertText = data.message;
-            this.form.order_column = data.order_column;
-            this.showAlert = true;
-            setTimeout(() => {
-              this.showAlert = false;
-            }, 1500);
-          })
-          .catch((errors) => {
-            console.error(errors);
-          });
+        .patch(
+          this.setEndpoint
+            ? this.setEndpoint
+            : `/frontend/admin/media/ordercolumn/${this.model.id}`,
+        )
+        .then((data) => {
+          this.alertText = data.message;
+          this.form.order_column = data.order_column;
+          this.showAlert = true;
+          setTimeout(() => {
+            this.showAlert = false;
+          }, 1500);
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
     },
   },
 };

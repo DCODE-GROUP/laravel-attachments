@@ -9,7 +9,12 @@
         <x-mark-icon class="h-4 w-4" />
       </button>
     </header>
-    <input type="text" v-model="form.alt_text" @blur="update" class="w-20 form-control">
+    <input
+      type="text"
+      v-model="form.alt_text"
+      @blur="update"
+      class="w-20 form-control"
+    />
   </div>
 </template>
 

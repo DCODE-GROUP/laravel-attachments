@@ -79,8 +79,12 @@
           </td>
           <td>
             <order-column-updater
-                :model="item"
-                :set-endpoint="item.hasOwnProperty('set_order_column_endpoint') ? item.set_order_column_endpoint : null"
+              :model="item"
+              :set-endpoint="
+                item.hasOwnProperty('set_order_column_endpoint')
+                  ? item.set_order_column_endpoint
+                  : null
+              "
             ></order-column-updater>
           </td>
           <td v-if="showFileSize">

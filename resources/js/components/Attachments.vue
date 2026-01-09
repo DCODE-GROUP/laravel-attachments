@@ -434,7 +434,7 @@ export default {
 };
 </script>
 <style scoped>
-.attachments{
+.attachments {
   display: flex;
 }
 </style>
