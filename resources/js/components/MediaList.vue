@@ -306,12 +306,8 @@ export default {
       this.$emit("media-deleted", { id: item.id, index: index });
     },
     fireEditEvent(item) {
-      this.bus.$emit("openSidePanel", {
-        componentName: "SidePanelImageMarkup",
-        componentData: {
-          items: this.getMedia(item),
-        },
-        title: `Edit ${item.custom_properties.original_filename}`,
+      this.bus.$emit("media-edit", {
+        item: this.getMedia(item),
       });
     },
     getMedia(item) {
