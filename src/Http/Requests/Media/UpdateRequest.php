@@ -15,8 +15,8 @@ class UpdateRequest extends FormRequest
     {
         return [
             'file' => [
-                'required', 
-                'file'
+                'required',
+                'file',
             ],
         ];
     }

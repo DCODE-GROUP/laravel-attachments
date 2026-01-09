@@ -23,10 +23,10 @@ class StoreAnnotationController
                 'hidden',
             ])
             ->toArray(), [
-                    'created_at' => now()->toDateTimeString(),
-                    'updated_at' => now()->toDateTimeString(),
-                    'media_id' => $media->id,
-                ]));
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString(),
+                'media_id' => $media->id,
+            ]));
 
         $media->annotations()->insert($insertableItems->toArray());
 

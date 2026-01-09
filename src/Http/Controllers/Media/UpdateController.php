@@ -11,17 +11,17 @@ use Illuminate\Support\Str;
 class UpdateController
 {
     use AuthorizesRequests;
-    
+
     public function __invoke(UpdateRequest $request, Media $media)
     {
         $this->authorize('create', Media::class);
         $file = $request->file('file');
-        $modelClass =  $media->model_type;
+        $modelClass = $media->model_type;
         $modelId = $media->model_id;
         $model = $modelClass::findOrFail($modelId);
-        
+
         $type = $file->getMimeType() ? Str::before($file->getMimeType(), '/') : 'default';
-        
+
         $newMedia = $model->addMediaFromRequest('file')
             ->usingFileName($file->hashName())
             ->withCustomProperties([

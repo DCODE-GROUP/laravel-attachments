@@ -28,18 +28,18 @@ class OptionsController
 
     private function getCategories(Collection $categories, &$result, $parent_id = 0, int $depth = 0)
     {
-        //filter only categories under current "parent"
+        // filter only categories under current "parent"
         $rootCategories = $categories->filter(fn ($item) => $item->parent_id == $parent_id);
 
-        //loop through them
+        // loop through them
         foreach ($rootCategories as $category) {
-            //add category. Don't forget the dashes in front. Use ID as index
+            // add category. Don't forget the dashes in front. Use ID as index
             $result[] = [
                 'id' => $category->id,
                 'name' => str_repeat('-- ', $depth).$category->name,
             ];
 
-            //go deeper - let's look for "children" of current category
+            // go deeper - let's look for "children" of current category
             if ($category->childrenRecursive->isNotEmpty()) {
                 $this->getCategories($category->childrenRecursive, $result, $category->id, $depth + 1);
             }

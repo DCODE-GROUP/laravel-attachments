@@ -25,8 +25,8 @@ class ExistingController
         }
 
         return $mediaQuery->with(['annotations', 'children', 'children.annotations'])
-                          ->orderby('order_column')
-                          ->get()
-                          ->toArray();
+            ->orderby('order_column')
+            ->get()
+            ->toArray();
     }
 }

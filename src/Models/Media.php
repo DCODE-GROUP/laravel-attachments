@@ -106,13 +106,13 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
         return route('frontend.admin.media.annotations.store', $this);
     }
 
-
     public function getSetOrderColumnEndpointAttribute()
     {
         return route('frontend.admin.media.ordercolumn', $this);
     }
 
-    public function getUpdateUrlAttribute(){
+    public function getUpdateUrlAttribute()
+    {
         return route('frontend.admin.media.update', $this);
     }
 
