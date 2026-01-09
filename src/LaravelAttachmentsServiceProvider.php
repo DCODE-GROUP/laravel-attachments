@@ -11,7 +11,9 @@ use Dcodegroup\LaravelAttachments\Http\Controllers\Media\DeleteController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\ExistingController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetAltTextController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetCategoryController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetOrderColumnController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\SetTitleController;
+use Dcodegroup\LaravelAttachments\Http\Controllers\Media\UpdateController;
 use Dcodegroup\LaravelAttachments\Http\Controllers\Media\UploadController;
 use Dcodegroup\LaravelAttachments\Models\Media;
 use Dcodegroup\LaravelAttachments\Observer\MediaObserver;
@@ -53,11 +55,13 @@ class LaravelAttachmentsServiceProvider extends ServiceProvider
         ) {
             Route::post("$prefix/attach", AttachController::class)->name("$name.attach");
             Route::post("$prefix/upload", UploadController::class)->name("$name.upload");
+            Route::patch("$prefix/update/{media}", UpdateController::class)->name("$name.update");
             Route::get("$prefix/existing", ExistingController::class)->name("$name.existing");
             Route::delete("$prefix/delete/{media}", DeleteController::class)->name("$name.delete");
 
             Route::patch("$prefix/title/{media}", SetTitleController::class)->name("$name.title");
             Route::patch("$prefix/alttext/{media}", SetAltTextController::class)->name("$name.alttext");
+            Route::patch("$prefix/ordercolumn/{media}", SetOrderColumnController::class)->name("$name.ordercolumn");
         });
 
         Route::macro('attachmentAnnotations', function (

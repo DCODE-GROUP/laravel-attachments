@@ -346,3 +346,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.attachments {
+  display: flex;
+}
+</style>

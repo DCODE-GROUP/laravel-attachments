@@ -11,9 +11,9 @@
     </header>
     <input
       type="text"
-      v-model="form.alt_text"
+      v-model="form.order_column"
       @blur="update"
-      class="w-20 form-control"
+      class="w-20"
     />
   </div>
 </template>
@@ -23,7 +23,7 @@ import Form from "form-backend-validation";
 import { CheckIcon, XIcon } from "@heroicons/vue/solid";
 
 export default {
-  name: "AltTextUpdater",
+  name: "OrderColumnUpdater",
   components: {
     CheckIcon,
     XIcon,
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       form: new Form({
-        alt_text: this.model.alt_text
+        order_column: this.model.order_column,
       }),
       showAlert: false,
       alertText: "",
@@ -53,28 +53,30 @@ export default {
   },
   watch: {
     model(newValue, oldValue) {
-      this.form.alt_text = newValue.alt_text;
+      this.form.order_column = newValue.order_column;
     },
   },
 
   methods: {
     update() {
       this.form
-          .patch(this.setEndpoint ? this.setEndpoint : `/frontend/admin/media/alttext/${this.model.id}`)
-          .then((data) => {
-            this.alertText = data.message;
-            this.form.alt_text = data.alt_text;
-            this.showAlert = true;
-            setTimeout(() => {
-              this.showAlert = false;
-            }, 1500);
-          })
-          .catch((errors) => {
-            console.error(errors);
-          });
+        .patch(
+          this.setEndpoint
+            ? this.setEndpoint
+            : `/frontend/admin/media/ordercolumn/${this.model.id}`,
+        )
+        .then((data) => {
+          this.alertText = data.message;
+          this.form.order_column = data.order_column;
+          this.showAlert = true;
+          setTimeout(() => {
+            this.showAlert = false;
+          }, 1500);
+        })
+        .catch((errors) => {
+          console.error(errors);
+        });
     },
   },
 };
 </script>
-
-<style scoped></style>

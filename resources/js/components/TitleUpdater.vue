@@ -9,7 +9,7 @@
         <x-icon class="h-4 w-4" />
       </button>
     </header>
-    <input type="text" v-model="form.title" @blur="update">
+    <input type="text" v-model="form.title" @blur="update" class="w-20" />
   </div>
 </template>
 

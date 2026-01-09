@@ -15,6 +15,9 @@
           {{ $t("media.table.headings.category") }}
         </th>
         <th v-if="!compact">
+          {{ $t("media.table.headings.order") }}
+        </th>
+        <th v-if="!compact">
           {{ $t("media.table.headings.size") }}
         </th>
         <th v-if="!compact">
@@ -50,6 +53,16 @@
               :model="item"
               :set-endpoint="item.hasOwnProperty('set_category_endpoint') ? item.set_category_endpoint : null"
             />
+          </td>
+          <td>
+            <order-column-updater
+              :model="item"
+              :set-endpoint="
+                item.hasOwnProperty('set_order_column_endpoint')
+                  ? item.set_order_column_endpoint
+                  : null
+              "
+            ></order-column-updater>
           </td>
           <td v-if="!compact">
             {{ formatFileSize(item.size) }}
@@ -123,6 +136,7 @@ import Icon from "./Icon.vue";
 import InlineCategoryUpdater from "./InlineCategoryUpdater.vue";
 import TitleUpdater from "./TitleUpdater.vue";
 import AltTextUpdater from "./AltTextUpdater.vue";
+import OrderColumnUpdater from "./OrderColumnUpdater.vue";
 
 export default {
   components: {
@@ -134,6 +148,7 @@ export default {
     InlineCategoryUpdater,
     TitleUpdater,
     AltTextUpdater,
+    OrderColumnUpdater,
     Icon,
     PencilIcon,
     TrashIcon,
@@ -198,6 +213,7 @@ export default {
   data() {
     return {};
   },
+  inject: ["bus"],
   methods: {
     formatDate(value) {
       return value == null ? "" : new Date(value).toLocaleDateString();
@@ -236,14 +252,9 @@ export default {
       this.$emit("media-deleted", { id: item.id, index: index });
     },
     fireEditEvent(item) {
-      // console.log("reached fireEditEvent", item)
-      // this.$root.$emit("openSidePanel", {
-      //   componentName: "SidePanelImageMarkup",
-      //   componentData: {
-      //     items: this.getMedia(item),
-      //   },
-      //   title: `Edit ${item.custom_properties.original_filename}`,
-      // });
+      this.bus.$emit("media-edit", {
+        item: this.getMedia(item),
+      });
     },
     getMedia(item) {
       if (this.isApplication(item) && item.children.length) {

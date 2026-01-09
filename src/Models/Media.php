@@ -31,8 +31,10 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
      */
     protected $appends = [
         'add_annotation_endpoint',
+        'set_order_column_endpoint',
         'grid_url',
         'list_url',
+        'update_url',
         'original_url',
         'preview_url',
         'thumb_url',
@@ -102,6 +104,16 @@ class Media extends \Spatie\MediaLibrary\MediaCollections\Models\Media
     public function getAddAnnotationEndpointAttribute()
     {
         return route('frontend.admin.media.annotations.store', $this);
+    }
+
+
+    public function getSetOrderColumnEndpointAttribute()
+    {
+        return route('frontend.admin.media.ordercolumn', $this);
+    }
+
+    public function getUpdateUrlAttribute(){
+        return route('frontend.admin.media.update', $this);
     }
 
     public function getPreviewApplicationUrlAttribute()
