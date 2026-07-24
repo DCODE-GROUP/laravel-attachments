@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 abstract class UsesMedia extends Model implements HasMedia
 {
@@ -16,7 +17,7 @@ abstract class UsesMedia extends Model implements HasMedia
         return $this->morphMany(config('media-library.media_model'), 'parent_model');
     }
 
-    public function registerMediaConversions(?\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(config('attachments.media.conversions.thumb.width'))
